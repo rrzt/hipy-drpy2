@@ -1,0 +1,132 @@
+var rule = {
+    类型: '影视',
+    title: '甜圈短剧[短]',
+    host: 'https://mov.cenguigui.cn',
+    homeUrl: '/duanju/api.php?classname=推荐榜&offset=0',
+    url: '/duanju/api.php?classname=fyclass&offset=fypage',
+    detailUrl: '/duanju/api.php?book_id=fyid',
+    searchUrl: '/duanju/api.php?name=**&page=fypage',
+    searchable: 2,
+    quickSearch: 0,
+    filterable: 0,
+    //search_match: true, //精准搜索
+    headers: {
+        'User-Agent': 'MOBILE_UA',
+        'Referer': HOST + '/'
+    },
+    timeout: 5000,
+    class_name: '🔥 推荐榜&🎬 新剧&🎬 逆袭&🎬 霸总&🎬 现代言情&🎬 打脸虐渣&🎬 豪门恩怨&🎬 神豪&🎬 马甲&🎬 都市日常&🎬 战神归来&🎬 小人物&🎬 女性成长&🎬 大女主&🎬 穿越&🎬 都市修仙&🎬 强者回归&🎬 亲情&🎬 古装&🎬 重生&🎬 闪婚&🎬 赘婿逆袭&🎬 虐恋&🎬 追妻&🎬 天下无敌&🎬 家庭伦理&🎬 萌宝&🎬 古风权谋&🎬 职场&🎬 奇幻脑洞&🎬 异能&🎬 无敌神医&🎬 古风言情&🎬 传承觉醒&🎬 现言甜宠&🎬 奇幻爱情&🎬 乡村&🎬 历史古代&🎬 王妃&🎬 高手下山&🎬 娱乐圈&🎬 强强联合&🎬 破镜重圆&🎬 暗恋成真&🎬 民国&🎬 欢喜冤家&🎬 系统&🎬 真假千金&🎬 龙王&🎬 校园&🎬 穿书&🎬 女帝&🎬 团宠&🎬 年代爱情&🎬 玄幻仙侠&🎬 青梅竹马&🎬 悬疑推理&🎬 皇后&🎬 替身&🎬 大叔&🎬 喜剧&🎬 剧情',
+    class_url: '推荐榜&新剧&逆袭&霸总&现代言情&打脸虐渣&豪门恩怨&神豪&马甲&都市日常&战神归来&小人物&女性成长&大女主&穿越&都市修仙&强者回归&亲情&古装&重生&闪婚&赘婿逆袭&虐恋&追妻&天下无敌&家庭伦理&萌宝&古风权谋&职场&奇幻脑洞&异能&无敌神医&古风言情&传承觉醒&现言甜宠&奇幻爱情&乡村&历史古代&王妃&高手下山&娱乐圈&强强联合&破镜重圆&暗恋成真&民国&欢喜冤家&系统&真假千金&龙王&校园&穿书&女帝&团宠&年代爱情&玄幻仙侠&青梅竹马&悬疑推理&皇后&替身&大叔&喜剧&剧情',
+    play_parse: true,
+    double: true,
+    /*lazy: $js.toString(() => {
+        const qualities = [
+            {display: "蓝光",level: "1080p"},
+            {display: "超清",level: "720p"},
+            {display: "高清",level: "480p"},
+            {display: "标清",level: "360p"},
+            {display: "默认",level: null}    // null表示不使用level参数
+        ];
+        let urls = [];
+        qualities.forEach(quality => {
+            let baseUrl = `${HOST}/duanju/api.php?video_id=${input}&type=mp4`;
+            let url = quality.level ? `${baseUrl}&level=${quality.level}` : baseUrl;
+            urls.push(quality.display + " (无API)", url);
+        });
+        qualities.forEach(quality => {
+            let baseUrl = `https://api.cenguigui.cn/api/duanju/api.php?video_id=${input}&type=mp4`;
+            let url = quality.level ? `${baseUrl}&level=${quality.level}` : baseUrl;
+            urls.push(quality.display + " (API)", url);
+        });
+        input = {
+            parse: 0,
+            url: urls
+        };
+    }),*/
+    lazy: $js.toString(() => {
+        let kurl1 = `${HOST}/duanju/api.php?video_id=${input}&type=mp4`;
+        let kurl2 = `https://api.cenguigui.cn/api/duanju/api.php?video_id=${input}&type=mp4`;
+        input = {
+            jx: 0,
+            parse: 0,
+            url: [
+                "默认", kurl1,
+                "API", kurl2
+            ]
+        };
+    }),
+    推荐: $js.toString(() => {
+        let res = request(input, {
+            headers: rule.headers
+        });
+        let data = JSON.parse(res).data;
+        VODS = [];
+        data.forEach(item => {
+            VODS.push({
+                vod_id: item.book_id,
+                vod_name: item.title,
+                vod_pic: item.cover,
+                vod_remarks: `${item.sub_title}|${item.episode_cnt}集`
+            });
+        });
+    }),
+    一级: $js.toString(() => {
+        let res = request(input, {
+            headers: rule.headers
+        });
+        let data = JSON.parse(res).data;
+        VODS = [];
+        data.forEach(item => {
+            VODS.push({
+                vod_id: item.book_id,
+                vod_name: item.title,
+                vod_pic: item.cover,
+                vod_remarks: `${item.sub_title}|${item.episode_cnt}集`
+            });
+        });
+    }),
+    二级: $js.toString(() => {
+        let res = request(input, {
+            headers: rule.headers
+        });
+        let item = JSON.parse(res);
+        let playUrls = [];
+        if (item.data && Array.isArray(item.data)) {
+            playUrls = item.data.map(ep => `${ep.title}$${ep.video_id}`);
+        }
+        VOD = {
+            vod_id: item.book_id || '',
+            vod_name: item.book_name || item.title || '',
+            type_name: item.category || '',
+            vod_pic: item.book_pic || item.cover || '',
+            vod_content: item.desc || '',
+            vod_remarks: item.duration || '',
+            vod_year: item.time || '',
+            vod_play_from: '甜圈短剧',
+            vod_play_url: playUrls.join("#")
+        };
+    }),
+    搜索: $js.toString(() => {
+        let d = [];
+        let html = request(input, {
+            headers: rule.headers
+        });
+        let data = JSON.parse(html).data;
+        if (rule.search_match) {
+            data = data.filter(item =>
+                item.title &&
+                new RegExp(KEY, "i").test(item.title)
+            );
+        }
+        data.forEach((it) => {
+            d.push({
+                title: it.title,
+                img: it.cover,
+                year: it.author,
+                desc: it.type,
+                url: it.book_id
+            });
+        });
+        setResult(d);
+    }),
+}
