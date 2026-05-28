@@ -29,7 +29,7 @@
         "api":"https://file.icve.com.cn/file_doc/249/899/3E7E0C8A023B624CEC6BDCC200F06F02.js",
         "ext":"https://cdn.waimaimingtang.com/file/images/bwc/20251023002108-a4795930ec.js"
         },
-    {
+	{
       "key": "闪电影视",
       "name": "🐬闪电影视｜追剧",
       "type": 1,
@@ -721,7 +721,7 @@
             "url": "https://gh-proxy.org/https://raw.githubusercontent.com/807080747/zv/refs/heads/main/sese.txt"
         }, 
         {
-            "name": "🐬综合直播",
+            "name": "🐬综合直播 海豚影视交流群 TG：@hshsjk9 ",
             "type": 0,
             "playerType": 2,
             "url": "https://ds65.tv1288.xyz",
@@ -754,6 +754,18 @@
             "url": "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u"
         }, 
         {
+            "name": "🐬国际TV 有🔞",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "https://raw.githubusercontent.com/yihad168/tv/refs/heads/main/tv.m3u"
+        },
+	    {
+            "name": "🐬UnifiTV",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/GHK/refs/heads/main/unifi.txt"
+        },
+	    {
             "name": "🐬裤佬TV",
             "type": 0,
             "ua": "okhttp",
