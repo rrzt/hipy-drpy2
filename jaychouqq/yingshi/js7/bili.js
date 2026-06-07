@@ -1,23 +1,5 @@
-/**
- * 影视TV 弹幕支持 
-    * https://t.me/fongmi_offical/
-    * https://github.com/FongMi/Release/tree/main/apk
- * Cookie设置
-    * Cookie获取方法 https://ghproxy.net/https://raw.githubusercontent.com/UndCover/PyramidStore/main/list.md
- * Cookie设置方法1: DR-PY 后台管理界面
-    * CMS后台管理 > 设置中心 > 环境变量 > {"bili_cookie":"XXXXXXX","vmid":"XXXXXX"} > 保存
- * Cookie设置方法2: 手动替换Cookie
-    * 底下代码 headers的
-    * "Cookie":"$bili_cookie"
-    * 手动替换为
-    * "Cookie":"将获取的Cookie黏贴在这"
- * 客户端长期Cookie设置教程:
- * 抓包哔哩手机端搜索access_key,取任意链接里的access_key和appkey在drpy环境变量中增加同名的环境变量即可
- * 此时哔哩.js这个解析可用于此源的解析线路用
- */
-
-var rule = {
-    title:'bili',
+﻿var rule = {
+    title:'哔哩影视',
     host:'https://api.bilibili.com',
     url:'/fyclass-fypage&vmid=$vmid',
     detailUrl:'/pgc/view/web/season?season_id=fyid',
@@ -30,11 +12,10 @@ var rule = {
     headers:{
         'User-Agent':'PC_UA',
         "Referer": "https://www.bilibili.com",
-        "Cookie":""
+        "Cookie":"http://127.0.0.1:9978/file/TV/cookie.txt"
     },
-    tab_order:['bilibili','720P'],//线路顺序,按里面的顺序优先，没写的依次排后面
     timeout:5000,
-    class_name:'4K番剧&4K国创&4K电影&4K电视剧&4K纪录片&4K综艺&全部&4K追番&4K追剧&4K时间表',
+    class_name:'番剧&国创&电影&电视剧&纪录片&综艺&全部&追番&追剧&时间表',
     class_url:'1&4&2&5&3&7&全部&追番&追剧&时间表',
     filter:{"全部":[{"key":"tid","name":"分类","value":[{"n":"番剧","v":"1"},{"n":"国创","v":"4"},{"n":"电影","v":"2"},{"n":"电视剧","v":"5"},{"n":"记录片","v":"3"},{"n":"综艺","v":"7"}]},{"key":"order","name":"排序","value":[{"n":"播放数量","v":"2"},{"n":"更新时间","v":"0"},{"n":"最高评分","v":"4"},{"n":"弹幕数量","v":"1"},{"n":"追看人数","v":"3"},{"n":"开播时间","v":"5"},{"n":"上映时间","v":"6"}]},{"key":"season_status","name":"付费","value":[{"n":"全部","v":"-1"},{"n":"免费","v":"1"},{"n":"付费","v":"2%2C6"},{"n":"大会员","v":"4%2C6"}]}],"时间表":[{"key":"tid","name":"分类","value":[{"n":"番剧","v":"1"},{"n":"国创","v":"4"}]}]},
     play_parse:true,

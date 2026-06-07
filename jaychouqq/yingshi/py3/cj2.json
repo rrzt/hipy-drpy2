@@ -150,6 +150,13 @@
             "paichu": "1,2,3,4"
         },
          {
+            "name": "AV-色猫",
+            "api": "https://caiji.semaozy.net/inc/apijson_vod.php",
+            "detail": "https://caiji.semaozy.net",
+            "bz": "1",
+            "paichu": "1,2,3,4"
+        },
+         {
             "name": "AV-桃花",
             "api": "https://thzy1.me/api.php/provide/vod/",
             "detail": "https://thzy1.me",

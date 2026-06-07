@@ -157,6 +157,42 @@ ONLINE_LIVE_SOURCES = [
         "type": "m3u",
         "ua": "AptvPlayer-UA"
     },
+     {
+        "id": "国外直播",
+        "name": "💎 国外直播",
+        "url": "https://proxy.api.030101.xyz/iptv-org.github.io/iptv/index.m3u",
+        "cover": TV_COVER,
+        "remarks": "国外直播",
+        "type": "m3u",
+        "ua": "AptvPlayer-UA"
+    },
+        {
+        "id": "日本直播",
+        "name": "💎 日本直播",
+        "url": "https://web.utako.moe/jp.m3u",
+        "cover": TV_COVER,
+        "remarks": "日本直播",
+        "type": "m3u",
+        "ua": "AptvPlayer-UA"
+    },
+     {
+        "id": "jackTV",
+        "name": "💎jackTV",
+        "url": "https://php.946985.filegear-sg.me/jackTV.m3u",
+        "cover": TV_COVER,
+        "remarks": "jackTV",
+        "type": "m3u",
+        "ua": "AptvPlayer-UA"
+    },
+     {
+        "id": "国际频道",
+        "name": "💎 国际频道",
+        "url": "http://tv123.vvvv.ee/tv.m3u",
+        "cover": TV_COVER,
+        "remarks": "国际频道",
+        "type": "m3u",
+        "ua": "AptvPlayer-UA"
+    },
     {
         "id": "游魂",
         "name": "💎 游魂",

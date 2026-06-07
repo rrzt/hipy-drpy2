@@ -1,13 +1,16 @@
 {
- "嗅探词": ".m3u8#.mp4#.m3u8?#freeok.mp4",
- "分类url": "https://v.shdy5.us/list/{cateId}-{catePg}.html;;vr1au0",
- "倒序": "1",
- "分类": "动漫$4#电影$1#电视剧$2#港剧$21#韩剧$22#台剧$26#日剧$24#美剧$23",
- "数组二次截取": "class=\"v_img\">&&</ul>",
- "数组": "\"v_list\"&&\"grid_box\"",
- "标题": "title=\"&&\"",
- "副标题": "v_note\"&&</div",
- "跳转播放链接": "<iframe*src=\"&&\"",
- "二次跳转播放链接": "https://hhjx.hhplayer.com/api.php;post;url=+var url*\"&&\"+&t=+var t*\"&&\"+&key=+var key*\"&&\"+&act=0+&play=1",
- "三次跳转播放链接": "\"url\"*\"&&\""
+    "首页": "0",
+    "请求头": "User-Agent$MOBILE_UA#Accept$text/html,application/xhtml+xml,application/xml；；q=0.9,image/avif,image/webp,image/apng,*/*；；q=0.8,application/signed-exchange；；v=b3；；q=0.7&&Accept-Language@zh-CN,zh；；q=0.9",
+    "分类url": "https://shdy2.com/list/{cateId}-{catePg}.html",
+    "分类": "剧集$2#电影$1#港剧$21#台剧$26#日剧$24#韩剧$22#美剧$23",
+    "数组": "class=\"v_img&&/li>",
+    "标题": "alt=\"&&\"",
+    "图片": "original=\"&&\"",
+    "链接": "href=\"&&\"",
+    "简介": "show_part\">&&<a",
+    "演员": "主演:&&<a",
+    "导演": "导演:&&/",
+    "播放二次截取": "class=\"play_list&&/ul>",
+    "播放数组": "<li&&/li>",
+    "倒序": "1"
 }

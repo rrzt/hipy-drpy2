@@ -518,7 +518,7 @@ do_one_click() {
     if ! git diff --cached --quiet; then
         local commit_out
         # 自动化提交，附带时间戳
-        commit_out=$(git commit -m "Auto Sync: $(date '+%Y-%m-%d %H:%M:%S')" 2>&1)
+        commit_out=$(git commit -m "Update Up" 2>&1)
         if [ $? -ne 0 ]; then
             error_msg "提交代码失败！Git 报错原因如下："
             echo -e "${RED}$commit_out${NC}"

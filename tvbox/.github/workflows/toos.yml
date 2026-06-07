@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   Update:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
@@ -27,7 +27,7 @@ jobs:
       with:
         repository: cluntop/tvbox
         token: ${{ secrets.GIT_TOKEN }}
-        fetch-depth: 1
+        fetch-depth: 0
 
     - name: Delete old workflow runs
       uses: Mattraks/delete-workflow-runs@v2
@@ -37,23 +37,22 @@ jobs:
         retain_days: 1
         keep_minimum_runs: 3
 
-    #- name: Set up Python
-      # uses: actions/setup-python@v6
-      # with:
-        # python-version: '3.10'
-        # cache: 'pip'
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.10'
+        cache: 'pip'
 
     - name: Install dependencies
       run: |
-        python -m venv .venv
-        source .venv/bin/activate
+        
         python -m pip install --upgrade pip
-        # if [ -f .github/requirements.txt ]; then pip install -r .github/requirements.txt; fi
+        if [ -f .github/requirements.txt ]; then pip install -r .github/requirements.txt; fi
         pip install aiohttp
 
     - name: Run M3U script
       run: |
-        source .venv/bin/activate
+        
         python py/ssjh.py
 
     - name: Commit and Push changes

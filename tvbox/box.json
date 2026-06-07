@@ -1204,7 +1204,7 @@
 		"PPTV",
 		"migu"
 	],
-	"spider": "./jar/xb.jar;md5;./jar/xb.jar.md5",
+	"spider": "./jar/xbpq.jar;md5;./jar/xbpq.jar.md5",
 	"disabled_wallpaper": "./img/0.jpg",
 	"wallpaper": "./img/0.jpg",
 	"logo": "./img/pg.gif",
