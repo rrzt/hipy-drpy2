@@ -179,9 +179,9 @@
             "paichu": "1,2,3,4"
         },
         {
-            "name": "TV-卧龙资源2",
-            "api": "https://wolongzyw.com/api.php/provide/vod",
-            "detail": "https://wolongzyw.com",
+            "name": "TV-tvbox",
+            "api": "https://dy.7772888.xyz/api.php/tvbox",
+            "detail": "https://dy.7772888.xyz",
             "bz": "1",
             "paichu": "1,2,3,4"
         },

@@ -230,7 +230,7 @@
   { "name": "📺TVBOX", "api": "https://dy.7772888.xyz/api.php/tvbox" },
   { "name": "📺新浪", "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/from/xlm3u8" },
   { "name": "📺百度", "api": "https://api.apibdzy.com/api.php/provide/vod/from/dbm3u8/" },
-  { "name": "📺金鹰", "api": "https://jinyingzy.com/provide/vod/from/jinyingm3u8/" },
+  { "name": "📺金鹰", "api": "https://jyzyapi.com/provide/vod/" },
   { "name": "📺光速", "api": "https://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8/" },
   { "name": "📺索尼", "api": "https://suoniapi.com/api.php/provide/vod/from/snm3u8/" },
   { "name": "📺CK", "api": "https://ckzy.me/api.php/provide/vod/" },

@@ -241,9 +241,16 @@
             "paichu": "1,2,3,4"
         },
         {
-            "name": "TV-卧龙资源2",
-            "api": "https://wolongzyw.com/api.php/provide/vod",
-            "detail": "https://wolongzyw.com",
+            "name": "TV-tvbox",
+            "api": "https://dy.7772888.xyz/api.php/tvbox",
+            "detail": "https://dy.7772888.xyz",
+            "bz": "1",
+            "paichu": "1,2,3,4"
+        },
+        {
+            "name": "TV-聚合采集",
+            "api": "http://150.109.94.44:1112/api.php/provide/vod/",
+            "detail": "http://150.109.94.44:1112",
             "bz": "1",
             "paichu": "1,2,3,4"
         },
@@ -353,15 +360,15 @@
             "paichu": "1,2,3,4"
         },
         {
-            "name": "TV-金鹰点播",
-            "api": "https://jinyingzy.com/api.php/provide/vod",
-            "detail": "https://jinyingzy.com",
+            "name": "AV-百万",
+            "api": "https://api.bwzyz.com/api.php/provide/vod/",
+            "detail": "https://api.bwzyz.com/",
             "bz": "1",
             "paichu": "1,2,17,27"
         },
         {
             "name": "TV-金鹰资源",
-            "api": "https://jyzyapi.com/api.php/provide/vod",
+            "api": "https://jyzyapi.com/provide/vod/",
             "detail": "https://jyzyapi.com",
             "bz": "1",
             "paichu": "1,2,17,27"
@@ -388,9 +395,9 @@
             "paichu": "1,2,3,4"
         },
         {
-            "name": "TV-魔爪资源",
-            "api": "https://mozhuazy.com/api.php/provide/vod",
-            "detail": "https://mozhuazy.com",
+            "name": "TV-艾丹资源",
+            "api": "https://lovedan.net/api.php/provide/vod/",
+            "detail": "https://lovedan.net",
             "bz": "1",
             "paichu": "1,25,34,40"
         },
@@ -480,8 +487,8 @@
         },
         {
             "name": "AV-奥斯卡资源",
-            "api": "https://aosikazy.com/api.php/provide/vod",
-            "detail": "https://aosikazy.com",
+            "api": "https://aosikazy8.com/api.php/provide/vod",
+            "detail": "https://aosikazy8.com",
             "bz": "1",
             "paichu": "1,2,3,4"
         },
@@ -557,7 +564,7 @@
         },
         {
             "name": "AV-湿园资源",
-            "api": "https://xxavs.com/api.php/provide/vod",
+            "api": "https://xxavs.com/api.php/provide/vod/",
             "detail": "https://xxavs.com",
             "bz": "1",
             "paichu": "1,2,3,4"
@@ -598,9 +605,9 @@
             "paichu": "1,2,17,27"
         },
         {
-            "name": "TV-魔爪资源",
-            "api": "https://mozhuazy.com/api.php/provide/vod",
-            "detail": "",
+            "name": "av-bt4",
+            "api": "https://www.bt4.cc/api.php/provide/vod/",
+            "detail": "https://www.bt4.cc",
             "bz": "1",
             "paichu": "1,25,34,40"
         },
