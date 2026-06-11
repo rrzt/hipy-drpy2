@@ -23,12 +23,14 @@ const getHeaders = (params = {}) => {
     'deviceid': guid()
   };
 };
+
 const normalizeFieldName = k => {
   const l = k.toLowerCase();
   if (l.startsWith('vod') && l.length > 3) return 'vod_' + l.slice(3);
   if (l.startsWith('type') && l.length > 4) return 'type_' + l.slice(4);
   return l;
 };
+
 const normalizeVodList = list => (list || []).map(item => {
   const res = {};
   for (const [k, v] of Object.entries(item || {})) if (v != null) res[normalizeFieldName(k)] = v;
@@ -39,7 +41,7 @@ async function reqSafe(url, options = {}) {
   try {
     const res = await req(url, options);
     return JSON.parse(res.content);
-  } catch {
+  } catch (e) {
     return {};
   }
 }
@@ -54,10 +56,12 @@ async function home() {
     reqSafe(`${currentHost}/api/mw-movie/anonymous/get/filer/type`, { headers: getHeaders() }),
     reqSafe(`${currentHost}/api/mw-movie/anonymous/v1/get/filer/list`, { headers: getHeaders() })
   ]);
+
   const classes = (cRes.data || []).map(k => ({ type_name: k.typeName, type_id: k.typeId.toString() }));
-  const filters = {};
+  const fData = fRes.data || {};
   const baseSort = [{ n: "最近更新", v: "2" }, { n: "人气高低", v: "3" }, { n: "评分高低", v: "4" }];
-  for (const [tid, d] of Object.entries(fRes.data || {})) {
+  const filters = {};
+  for (const [tid, d] of Object.entries(fData)) {
     const sortValues = tid === '1' ? baseSort.slice(1) : baseSort;
     const arr = [
       { key: "type", name: "类型", value: (d.typeList || []).map(i => ({ n: i.itemText, v: i.itemValue })) },
@@ -98,6 +102,7 @@ async function category(tid, pg, _, ext = {}) {
     v_class: ext.v_class || '',
     year: ext.year || ''
   };
+
   const url = `${currentHost}/api/mw-movie/anonymous/video/list?${toQueryString(params)}`;
   const res = await reqSafe(url, { headers: getHeaders(params) });
   const vodList = normalizeVodList(res.data?.list || []);
@@ -115,27 +120,26 @@ async function detail(id) {
     headers: getHeaders({ id })
   });
   const vod = normalizeVodList([res.data])[0];
-  if (!vod) return JSON.stringify({ list: [{ vod_id: id, vod_name: '加载失败', vod_play_url: '' }] });
-  vod.vod_play_from = '金牌影院';
-  const eps = vod.episodelist || [];
-  if (eps.length === 0) {
-    vod.vod_play_url = `${vod.vod_name}$${id}@@1`;
-  } else if (eps.length === 1) {
-    vod.vod_play_url = `${vod.vod_name}$${id}@@${eps[0].nid}`;
-  } else {
-    vod.vod_play_url = eps.map(ep => {
-      const name = ep.name?.trim() || `第${ep.nid}集`;
-      return `${name}$${id}@@${ep.nid}`;
-    }).join('#');
+  if (!vod) {
+    return JSON.stringify({ list: [{ vod_id: id, vod_name: '加载失败', vod_play_url: '' }] });
   }
-  delete vod.episodelist;
+
+  vod.vod_play_from = '金牌影院';
+  if (vod.episodelist?.length) {
+    const episodeCount = vod.episodelist.length;
+    vod.vod_play_url = vod.episodelist.map((ep, index) => {
+      const episodeName = episodeCount > 1 ? `第${index + 1}集` : vod.vod_name;
+      return `${episodeName}$${id}@@${ep.nid}`;
+    }).join('#');
+    delete vod.episodelist;
+  }
   return JSON.stringify({ list: [vod] });
 }
 
 async function play(_, id) {
   const [vid, nid] = id.split('@@');
   const url = `${currentHost}/api/mw-movie/anonymous/v2/video/episode/url?clientType=1&id=${vid}&nid=${nid}`;
-  const res = await reqSafe(url, { headers: getHeaders({ clientType: '1', id: vid, nid }) });
+  const res = await reqSafe(url, { headers: getHeaders({ clientType: '1', id: vid, nid: nid }) });
   const urls = [];
   for (const item of res.data?.list || []) {
     urls.push(item.resolutionName, item.url);
