@@ -23,7 +23,14 @@
         "name":"🐬枫叶影院(关梯子使用)",
         "type":3,
         "api":"csp_fy",
-        "homePage":"https://fgblh.github.io/uhuj.github.io/枫叶影院.html"
+        "homePage":"https://fgblh.github.io/uhuj.github.io/枫叶🍁.html"
+      },
+		 {
+        "key":"6v",
+        "name":"🐬6V影视",
+        "type":3,
+        "api":"csp_6v",
+        "homePage":"https://fgblh.github.io/uhuj.github.io/6v.html"
       },
        {
         "key":"CZ",

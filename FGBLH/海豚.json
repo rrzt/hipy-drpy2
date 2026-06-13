@@ -460,19 +460,20 @@
         }
         ],
     "parses": [ 
-        {
-			"name":"咸鱼解析",
-			"type":0,"url":"https://jx.xyflv.cc/?url="
-		},
-		{
-            "name": "淘片解析",
-            "type": 0,
-            "url": "https://jx.yparse.com/index.php?url="
-        },
+       {
+      "name": "极速",
+      "type": 0,
+      "url": "https://jiexi.789jiexi.net:4433/?url="
+      },
 		{
             "name": "虾米解析",
             "type": 0,
             "url": "https://jx.xmflv.com/?url="
+        },
+		{
+            "name": "淘片解析",
+            "type": 0,
+            "url": "https://jx.yparse.com/index.php?url="
         },
      {
       "name": "解析1",
@@ -499,15 +500,11 @@
       "name": "解析5",
       "type": 0,
       "url": "https://nm.xxxc137.top/static/player/artplayer.html?url="
-    },{
-      "name": "极速",
+    },
+      {
+      "name": "解析6",
       "type": 0,
-      "url": "https://jiexi.789jiexi.net:4433/?url="
-      },
-         {
-            "name": "17解析",
-            "type": 0,
-            "url": "https://www.1717yun.com/jx/ty.php?url="
+      "url": "https://www.yemu.xyz/?url="
         },
 		{
             "name": "冰豆",
