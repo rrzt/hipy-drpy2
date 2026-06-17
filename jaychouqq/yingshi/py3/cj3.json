@@ -138,8 +138,8 @@
         },
         {
             "name": "TV-ikun资源",
-            "api": "https://ikunzyapi.com/api.php/provide/vod",
-            "detail": "https://ikunzyapi.com",
+            "api": "https://seep.eu.org/https://ikunzyapi.com/api.php/provide/vod",
+            "detail": "https://seep.eu.org/https://ikunzyapi.com",
             "bz": "1",
             "paichu": "1,2,3,4"
         },
