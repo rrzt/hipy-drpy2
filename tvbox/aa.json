@@ -26,6 +26,13 @@
 			"changeable": 1
 		},
 		{
+			"key": "WvMcp",
+			"name": "WvMcp",
+			"api": "csp_WvMcp",
+			"type": "3",
+			"jar": "./jar/WvSpider.jar"
+		},
+		{
 			"key": "小苹果",
 			"name": "小苹果",
 			"type": 4,

@@ -1,6 +1,13 @@
 {
 	"sites": [
 		{
+			"key": "WvMcp",
+			"name": "WvMcp",
+			"api": "csp_WvMcp",
+			"type": "3",
+			"jar": "./jar/WvSpider.jar"
+		},
+		{
 			"key": "聚合短剧",
 			"name": "聚合短剧",
 			"type": 3,

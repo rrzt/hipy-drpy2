@@ -24,13 +24,6 @@ BabesTV,http://79.127.207.193:80/BabesTV/playlist.m3u8
 dorcel,http://79.127.207.193:80/DorcelHD/playlist.m3u8 
 hustler,http://79.127.207.193:80/Hustler/playlist.m3u8 
 FrenchLover,http://79.127.207.193:80/FrenchLover/playlist.m3u8 
-PinkErotic1,http://79.127.207.193:80/PinkErotic1/playlist.m3u8 
-PinkErotic2,http://79.127.207.193:80/PinkErotic2/playlist.m3u8 
-PinkErotic3,http://79.127.207.193:80/PinkErotic3/playlist.m3u8 
-PinkErotic4,http://79.127.207.193:80/PinkErotic4/playlist.m3u8 
-PinkErotic5,http://79.127.207.193:80/PinkErotic5/playlist.m3u8 
-PinkErotic6,http://79.127.207.193:80/PinkErotic6/playlist.m3u8 
-PinkErotic7,http://79.127.207.193:80/PinkErotic7/playlist.m3u8 
 Leo HD,http://88.212.7.11/live/test_leo_hd_hevc/playlist.m3u8
 EroxHD,http://88.212.7.11/live/test_erox_hd_hevc/playlist.m3u8
 Eroxxx,http://88.212.7.11/live/test_eroxxx_hd_hevc/playlist.m3u8
@@ -55,8 +48,8 @@ PopC电影台,http://mg.hmysapp.cn:177/港澳台/香港港hk/PopC.php?id=301
 CCTV5体育1080p,http://173.208.212.130:8181/1080p/cctv5.m3u8
 CCTV5体育1080p,https://php.jdshipin.com:2096/TVOD/iptv.php?id=cctv5
 CCTV5+体育赛事1080p,https://php.jdshipin.com:2096/TVOD/iptv.php?id=cctv5p
-CCTV16奥林匹克1080p,https://php.jdshipin.com:2096/TVOD/iptv.php?id=cctv16
 CCTV16奥林匹克1080p,http://207.56.13.146:81/cdnlive/cctv16.m3u8
+CCTV16奥林匹克1080p,https://php.jdshipin.com:2096/TVOD/iptv.php?id=cctv16
 广东体育1080p,http://r.jdshipin.com/LiYdg
 澳门体育1080p,http://cdn6.163189.xyz/163189/amty
 纬来体育,rtmp://f13h.mine.nu/sat/tv721

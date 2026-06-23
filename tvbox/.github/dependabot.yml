@@ -12,6 +12,14 @@ updates:
       # day: "monday"
       timezone: "Asia/Shanghai"
       time: "09:00"
+      
+  - package-ecosystem: "pip" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+      # day: "monday"
+      timezone: "Asia/Shanghai"
+      time: "09:00"
     
     groups:
        all-actions:
