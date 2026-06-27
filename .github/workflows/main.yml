@@ -1,0 +1,38 @@
+name: 自动同步上游仓库
+on:
+  # 定时触发：每隔15分钟、每天8:00、每天16:00（北京时间）
+  # 注意：schedule 使用的是 UTC 时间，下面的时间已经换算
+  schedule:
+    - cron: '0 * * * *' # 每小时一次
+    - cron: '*/15 * * * *'   # UTC 每15分钟 → 北京时间每15分钟
+    - cron: '0 0 * * *'      # UTC 00:00 → 北京时间 08:00
+    - cron: '0 8 * * *'      # UTC 08:00 → 北京时间 16:00
+  # 手动触发
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync-with-upstream:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.repository.fork }}  # 仅在 fork 仓库中运行
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 同步上游更新
+        id: sync
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
+        with:
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          target_sync_branch: main   # 你的仓库目标分支，若为 master 请修改
+          upstream_sync_repo:  woshishiq1/hipy-drpy2   # 上游仓库（所有者/仓库名）
+          upstream_sync_branch: main        # 上游仓库的分支，若为 master 请修改
+          test_mode: false
+      - name: 同步结果反馈
+        if: steps.sync.outputs.has_new_commits == 'true'
+        run: echo "已发现并同步了上游的新提交。"
+      - name: 无新更新提示
+        if: steps.sync.outputs.has_new_commits == 'false'
+        run: echo "当前分支已是最新，无需同步。"
