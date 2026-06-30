@@ -139,17 +139,6 @@ var index_config_default = {
     token: "token",
     ut: "ut"
   },
-  emby: {
-    username: "CatPawPlay",
-    password: "CatPawPlay",
-    serverName: "CatPawPlay",
-    enable: true,
-    tmdbEnable: true,
-    tmdbApiKey: "",
-    tmdbLanguage: "zh-CN",
-    tmdbImageBase: "https://image.tmdb.org/t/p/original",
-    searchSourcePrefix: true
-  },
   y115: {
     cookie: ""
   },
