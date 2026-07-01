@@ -23,11 +23,11 @@ class Spider(BaseSpider):
             {'type_id': "/label/qq", 'type_name': "腾讯VIP精选"},
             {'type_id': "/label/bli", 'type_name': "B站VIP精选"},
             {'type_id': "/label/youku", 'type_name': "优酷VIP精选"},
+            {"type_id": "5", "type_name": "红果短剧"},
             {"type_id": "2", "type_name": "电视剧"},
             {"type_id": "1", "type_name": "电影"},
             {"type_id": "4", "type_name": "动漫"},
             {"type_id": "3", "type_name": "综艺"},
-            {"type_id": "5", "type_name": "热门短剧"},
         ], "filters": self._build_filters()}
 
     def _build_filters(self):

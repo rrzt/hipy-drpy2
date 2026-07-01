@@ -19,7 +19,7 @@ sys.path.append('..')
 class Spider(Spider):
 
     def init(self, extend="{}"):
-        origin = 'https://zh.pikpedcams.com/'
+        origin = 'https://zh.stripchat.com'
         self.host = origin
         self.headers = {
             'Origin': origin,
