@@ -237,7 +237,7 @@
   { "name": "📺索尼", "api": "https://suoniapi.com/api.php/provide/vod/from/snm3u8/" },
   { "name": "📺CK", "api": "https://ckzy.me/api.php/provide/vod/" },
   { "name": "📺天涯",  "api": "https://tyyszyapi.com/api.php/provide/vod/" },
-  { "name": "📺人人",  "api": "http://jiduo666.dpdns.org/rrsp.php" },
+  { "name": "📺大众",  "api": "https://cdn.dzzyapi.com/api.php/provide/vod/" },
   { "name": "📺荐片",  "api": "http://zhangqun1818.serv00.net/jianpian1.php" },
   { "name": "📺奇艺", "api": "https://iqiyizyapi.com/api.php/provide/vod/" },
   { "name": "📺魔都", "api": "https://www.mdzyapi.com/api.php/provide/vod/" },
