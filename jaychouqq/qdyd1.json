@@ -230,7 +230,7 @@
   { "name": "📺猫眼",  "api": "https://api.maoyanapi.top/api.php/provide/vod/" },
   { "name": "📺极速", "api": "https://jszyapi.com/api.php/provide/vod/from/jsm3u8/" },
   { "name": "📺豆瓣", "api": "https://caiji.dbzy5.com/api.php/provide/vod/" },
-  { "name": "📺九八", "api": "https://98zy.vip/api.php/provide/vod/" },
+  { "name": "📺大众", "api": "https://cdn.dzzyapi.com/api.php/provide/vod/" },
   { "name": "📺新浪", "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/from/xlm3u8" },
   { "name": "📺百度", "api": "https://api.apibdzy.com/api.php/provide/vod/from/dbm3u8/" },
   { "name": "📺金鹰", "api": "https://jyzyapi.com/provide/vod/" },
