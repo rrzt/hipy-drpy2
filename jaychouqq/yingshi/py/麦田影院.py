@@ -11,7 +11,7 @@ from base.spider import Spider
 
 class Spider(Spider):
     def init(self, extend=""):
-        self.host = "https://www.mtyy5.com"
+        self.host = "https://www.mtyy1.cc"
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Linux; Android 11; MI 11) AppleWebKit/537.36 TVBox/1.0',
             'Accept': 'text/html,application/xml;q=0.9,*/*;q=0.8',

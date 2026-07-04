@@ -14,6 +14,7 @@
       { "name": "豆瓣高分", "url": "&type=movie&tag=豆瓣高分&page_start={{page-1}}" },
       { "name": "华语", "url": "&type=movie&tag=华语&page_start={{page-1}}" },
       { "name": "欧美", "url": "&type=movie&tag=欧美&page_start={{page-1}}" },
+      { "name": "情色", "url": "&type=movie&tag=情色&page_start={{page-1}}" },
       { "name": "韩国", "url": "&type=movie&tag=韩国&page_start={{page-1}}" }
     ],
     "list": {
