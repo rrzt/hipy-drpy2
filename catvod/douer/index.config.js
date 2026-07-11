@@ -203,11 +203,10 @@ var index_config_default = {
   },
   live2vod: {
     sources: [
-      { name: "IPTV", url: "https://ipv.qq1000.site/IPTV.txt", img: "" },
+      { name: "YueChan", url: "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u", img: "" },
+      { name: "IPTV", url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", img: "" },
+      { name: "IPTV虏", url: "http://82.156.243.185:33389/fwc.m3u", img: "" },
       { name: "鑼冩槑鏄�", url: "https://cdn.jsdelivr.net/gh/fanmingming/live@refs/heads/main/tv/m3u/ipv6.m3u", img: "" },
-      { name: "鐢佃", url: "https://tv.iill.top/m3u/Gather", img: "" },
-      { name: "缃戠粶", url: "https://m.iill.top/Live.m3u", img: "" },
-      { name: "浣撹偛", url: "https://tv.iill.top/m3u/Sport", img: "" },
       { name: "鍝斿摡", url: "https://sub.ottiptv.cc/bililive.m3u", img: "" },
       { name: "铏庣墮", url: "https://sub.ottiptv.cc/huyayqk.m3u", img: "" },
       { name: "鏂楅奔", url: "https://sub.ottiptv.cc/douyuyqk.m3u", img: "" },
