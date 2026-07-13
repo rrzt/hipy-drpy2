@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-APP APTV
+#EXT-X-APTV-TYPE blank
+
+#EXTINF:-1 group-title="美亞🎬",美亚电影
+http://173.208.234.146/live/mymovie.m3u8
+#EXTINF:-1 group-title="星影🍿爆谷🎬",NOW星影台
+http://173.208.234.146/live/nowxy.m3u8
+#EXTINF:-1 group-title="星影🍿爆谷🎬",NOW爆谷台
+http://173.208.234.146/live/nowbg.m3u8

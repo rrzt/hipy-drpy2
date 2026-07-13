@@ -1,6 +1,15 @@
 {
 	"sites": [
 		{
+			"key": "py_douban",
+			"name": "豆瓣 | PY",
+			"type": 3,
+			"api": "./py/py_douban.py",
+			"searchable": 0,
+			"filterable": 0,
+			"changeable": 0
+		},
+		{
 			"key": "荐片",
 			"name": "荐片",
 			"type": 3,
