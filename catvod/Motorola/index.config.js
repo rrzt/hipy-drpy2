@@ -85,6 +85,9 @@ var index_config_default = {
   shandian: {
     urls: ["http://shandian.blog", "https://sd.sduc.site"]
   },
+  wouniu: {
+    urls: ["https://zmi.kdns.fr"]
+  },
   tgsou: {
     tgPic: true,
     count: 0,
