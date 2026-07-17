@@ -72,12 +72,11 @@ dns:
   prefer-h3: true
   ipv6: true
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,private,real-ip
-    - RULE-SET,trackerslist,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,google-cn,real-ip
@@ -86,7 +85,7 @@ dns:
     - RULE-SET,ai,fake-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
-    - MATCH,fake-ip
+    - MATCH,real-ip
   nameserver:
     - quic://dns.alidns.com:853
     - https://doh.pub/dns-query
@@ -113,7 +112,7 @@ proxies:
 
 proxy-groups:
   - {name: 节点选择, type: select, proxies: [香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/proxy.png"}
-  - {name: 网络测试, type: select, proxies: [全球直连, 节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/networktest.png"}
+  - {name: 网络测试, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/networktest.png"}
   - {name: 游戏平台, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/games.png"}
   - {name: AI 平台, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/ai.png"}
   - {name: 游戏服务, type: select, proxies: [全球直连, 节点选择], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/games-cn.png"}
@@ -138,14 +137,6 @@ proxy-groups:
   - {name: 免费节点, type: url-test, tolerance: 100, use: [🆓 免费订阅], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/free.png"}
 
 rule-providers:
-  trackerslist:
-    type: http
-    behavior: domain
-    format: mrs
-    path: ./ruleset/trackerslist.mrs
-    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs"
-    interval: 86400
-
   ads:
     type: http
     behavior: domain
@@ -305,12 +296,11 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,private,real-ip
-    - RULE-SET,trackerslist,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,google-cn,real-ip
@@ -319,7 +309,7 @@ dns:
     - RULE-SET,ai,fake-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
-    - MATCH,fake-ip
+    - MATCH,real-ip
   respect-rules: true
   nameserver:
     # 推荐将 `ecs` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
@@ -335,7 +325,7 @@ dns:
   nameserver-policy:
     'rule-set:private': [system]
     'rule-set:ads': [rcode://success]
-    'rule-set:trackerslist,microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
+    'rule-set:microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
 ```
 
 ---

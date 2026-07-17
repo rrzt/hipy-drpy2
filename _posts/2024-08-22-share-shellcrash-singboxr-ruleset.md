@@ -50,7 +50,7 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 分享, Router]
   ],
   "outbounds": [
     { "tag": "节点选择", "type": "selector", "outbounds": [ "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
-    { "tag": "网络测试", "type": "selector", "outbounds": [ "全球直连", "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
+    { "tag": "网络测试", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
     { "tag": "游戏平台", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "🆚 vless 节点" ] },
     { "tag": "AI 平台", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "🆚 vless 节点" ] },
     { "tag": "游戏服务", "type": "selector", "outbounds": [ "全球直连", "节点选择" ] },
@@ -99,13 +99,6 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 分享, Router]
       { "rule_set": [ "telegramip" ], "outbound": "电报消息" }
     ],
     "rule_set": [
-      {
-        "tag": "trackerslist",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/trackerslist.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/trackerslist.srs"
-      },
       {
         "tag": "ads",
         "type": "remote",
@@ -274,25 +267,24 @@ sc
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "hosts", "detour": "GLOBAL" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_alidns", "dns_dnspod" ] },
       { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "28.0.0.0/8", "inet6_range": "fc00::/16" }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/16" }
     ],
     "rules": [
       { "clash_mode": [ "Direct" ], "server": "dns_direct" },
       { "clash_mode": [ "Global" ], "server": "dns_proxy" },
       { "rule_set": [ "private" ], "server": "dns_resolver" },
       { "rule_set": [ "ads" ], "action": "predefined" },
-      { "rule_set": [ "trackerslist", "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
+      { "rule_set": [ "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
       { "rule_set": [ "games", "ai", "proxy" ], "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "rule_set": [ "cn" ], "server": "dns_direct" },
       { "action": "evaluate", "server": "dns_direct" },
-      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" },
-      { "match_response": true, "ip_accept_any": true, "invert": true, "action": "respond" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" }
     ],
     "final": "dns_direct",
     "strategy": "prefer_ipv4",
     "optimistic": true,
-    "reverse_mapping": true
+    "reverse_mapping": true,
+    "cache_client_subnet": true
   }
 }
 ```
@@ -329,28 +321,25 @@ sc
       { "tag": "dns_quad9", "type": "quic", "server": "dns11.quad9.net", "domain_resolver": "hosts", "detour": "GLOBAL" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_alidns", "dns_dnspod" ] },
       { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_quad9" ] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "28.0.0.0/8", "inet6_range": "fc00::/16" }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/16" }
     ],
     "rules": [
       { "clash_mode": [ "Direct" ], "server": "dns_direct" },
       { "clash_mode": [ "Global" ], "server": "dns_proxy" },
       { "rule_set": [ "private" ], "server": "dns_resolver" },
       { "rule_set": [ "ads" ], "action": "predefined" },
-      { "rule_set": [ "trackerslist", "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
+      { "rule_set": [ "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
       { "rule_set": [ "games", "ai", "proxy" ], "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "rule_set": [ "cn" ], "server": "dns_direct" },
       // 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
       { "action": "evaluate", "server": "dns_proxy", "client_subnet": "211.137.58.0/24" },
-      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" },
-      { "match_response": true, "ip_accept_any": true, "invert": true, "action": "respond" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" }
     ],
     "final": "dns_proxy",
     "strategy": "prefer_ipv4",
     "optimistic": true,
     "reverse_mapping": true,
-    // 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
-    "client_subnet": "211.137.58.0/24"
+    "cache_client_subnet": true
   }
 }
 ```
@@ -406,29 +395,6 @@ sc
 <img src="/assets/img/dns/dns-null.png" alt="设置部分 2" width="60%" />
 
 3. 进入 2) 功能设置 → 6) 自定义端口及密钥 → 5) 修改面板访问端口，修改为 `9090`
-4. 连接 SSH 后执行如下命令：
-```shell
-sed -i 's/"ip_accept_any": true,/"preferred_by": [ "hosts" ],/' "$CRASHDIR/starts/singbox_modify.sh"
-sed -i '/#生成experimental.json/i\
-  #生成http_clients.json\
-  cat >"$TMPDIR"/jsons/http_clients.json <<EOF\
-{\
-  "http_clients": [\
-       {\
-         "tag": "detour_proxy",\
-         "detour": "GLOBAL"\
-       },\
-       {\
-         "tag": "detour_direct",\
-         "detour": "DIRECT"\
-       }\
-  ]\
-}\
-EOF
-' "$CRASHDIR/starts/singbox_modify.sh"
-sed -i 's/log dns ntp certificate experimental/log dns ntp certificate http_clients experimental/' "$CRASHDIR/starts/singbox_modify.sh"
-sed -i 's/log dns ntp certificate experimental/log dns ntp certificate http_clients experimental/' "$CRASHDIR/menus/override.sh"
-```
 
 ## 八、 访问 Dashboard 面板
 1. 打开 zashboard 在线面板地址 <http://board.zash.run.place> 后，可直接在“[Clash API](https://sing-boxr.dustinwin.cc.cd/zh/configuration/experimental/clash-api/)”标签里将“主机”修改为 `192.168.31.1`，点击“提交”即可访问 Dashboard

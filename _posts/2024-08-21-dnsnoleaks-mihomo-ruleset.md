@@ -65,14 +65,14 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,fakeip-filter,real-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
-    - MATCH,fake-ip
+    - MATCH,real-ip
   respect-rules: true
   nameserver:
     # 推荐将 `ecs` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
@@ -116,7 +116,7 @@ dns:
     ipv6: true
     listen: 0.0.0.0:1053
     enhanced-mode: fake-ip
-    fake-ip-range: 28.0.0.0/8
+    fake-ip-range: 198.18.0.0/15
     fake-ip-range6: fc00::/16
     fake-ip-filter: [rule-set:fakeip-filter]
     nameserver:
@@ -143,7 +143,7 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter: ['+.*']
   respect-rules: true

@@ -281,7 +281,7 @@ echo -e '12345678\n12345678' | passwd root
   - ➍ 进入 2) DNS 设置 → 9) 修改 DNS 服务器，选择“4) 一键配置加密 DNS”
     - 注：推荐设置 DNS 分流（单独使用 ShellCrash 以及 ShellCrash 搭配 AdGuard Home 都适用），请看《[搭载 sing-boxr 内核进行 DNS 分流教程-ruleset 方案](https://proxy-tutorials.dustinwin.cc.cd/posts/dnsbypass-singboxr-ruleset)》
 
-- ④ 进入主菜单 → 4 启动设置，启用“1) 开机自启动”（若重启路由器后服务没有自动运行，可进入 3) 设置自启延时，设置为“30”秒，然后在《[六、 1. ⑥](https://proxy-tutorials.dustinwin.cc.cd//posts/pin-shellcrashadguardhome-mihomo/#1-adguard-home-%E5%AE%89%E8%A3%85)》，将 `sleep 10s` 改为 `sleep 40s`）
+- ④ 进入主菜单 → 4 启动设置，启用“1) 开机自启动”，然后选择“3) 设置自启延时”为“10 秒”
 - ⑤ 进入主菜单 → 5) 自动任务 → 1) 添加自动任务，输入对应的数字并回车后可设置执行条件
 - ⑥ 进入主菜单 → 8) 工具与优化，选择“6) 小米设备软固化 SSH”（无需输入需要还原的 SSH 密码）
 - ⑦ 进入主菜单 → 9) 更新与支持 → 4) 安装/更新本地 Dashboard 面板，推荐安装“1) 安装 zashboard 面板”  
@@ -340,7 +340,36 @@ echo -e '12345678\n12345678' | passwd root
 - ④ 将压缩后的“AdGuardHome”文件移动到路由器的 `/data/AdGuardHome`{: .filepath} 目录（没有此目录就新建）中  
   <img src="/assets/img/pin/move-adguardhome.png" alt="AdGuard Home 安装 1" width="60%" />
 
-- ⑤ 进入路由器文件管理的 `/data/auto_ssh`{: .filepath} 目录，右击“auto_ssh.sh”文件并点击“编辑”
+- ⑤ 进入路由器文件管理的 `/data/AdGuardHome`{: .filepath} 目录，右击空白处并选择“新建”，点击“文件”，“输入文件名”`AdGuardHome.sh`，添加如下内容并保存：
+  ```shell
+  #!/bin/sh /etc/rc.common
+
+  START=95
+  STOP=01
+  USE_PROCD=1
+
+  WORK_DIR="/data/AdGuardHome"
+  CONFIG_FILE="$WORK_DIR/AdGuardHome.yaml"
+
+  start_service() {
+      echo "AdGuard Home 正在启动..."
+      procd_open_instance
+      procd_set_param command "$WORK_DIR/AdGuardHome" -s run
+      procd_append_param command -c "$CONFIG_FILE"
+      procd_append_param command -w "$WORK_DIR"
+      procd_set_param pidfile /var/run/AdGuardHome.pid
+      procd_close_instance
+      echo "AdGuard Home 启动成功！"
+  }
+
+  stop_service() {
+      echo "AdGuard Home 正在停止..."
+      sleep 3
+      echo "AdGuard Home 停止成功！"
+  }
+  ```
+
+- ⑥ 进入路由器文件管理的 `/data/auto_ssh`{: .filepath} 目录，右击“auto_ssh.sh”文件并点击“编辑”
   - 注：若没有此目录和文件，可新建，且须连接 SSH 后执行命令 `chmod +x /data/auto_ssh/auto_ssh.sh`
 
   <img src="/assets/img/pin/edit-task.png" alt="AdGuard Home 安装 2" width="60%" />
@@ -348,25 +377,24 @@ echo -e '12345678\n12345678' | passwd root
 > AdGuard Home 的“DNS 服务器端口”须设置为“5353”
 {: .prompt-warning }
 
-- ⑥ 在最下方添加如下内容并保存：  
-  - 注： 若 ShellCrash 设置了自启延时如“30”秒，须将 `sleep 10s` 修改为 `sleep 40s`（即 +10s）
+- ⑦ 在最下方添加如下内容并保存：  
 
   ```shell
-  sleep 10s
-  /data/AdGuardHome/AdGuardHome -s install
-  /data/AdGuardHome/AdGuardHome -s start
+  sleep 20s
+  cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+  chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
   iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
   iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
   ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
   ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
   ```
 
-- ⑦ 连接 SSH 后直接粘贴如下所有命令：
+- ⑧ 连接 SSH 后直接粘贴如下所有命令：
 
   ```shell
   chmod +x /data/AdGuardHome/AdGuardHome
-  /data/AdGuardHome/AdGuardHome -s install
-  /data/AdGuardHome/AdGuardHome -s start
+  cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+  chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
   iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
   iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
   ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
@@ -422,8 +450,8 @@ echo -e '12345678\n12345678' | passwd root
 **配置 AdGuard Home 成功！**
 
 **AdGuard Home 常用命令：**
-1. 启动服务：`/data/AdGuardHome/AdGuardHome -s start`
-2. 停止服务：`/data/AdGuardHome/AdGuardHome -s stop`
+1. 启动服务：`/etc/init.d/AdGuardHome start`
+2. 停止服务：`/etc/init.d/AdGuardHome stop`
 3. 重启服务：`/data/AdGuardHome/AdGuardHome -s restart`
 4. 显示当前服务状态：`/data/AdGuardHome/AdGuardHome -s status`
 
@@ -437,9 +465,9 @@ echo -e '12345678\n12345678' | passwd root
   执行《[六、 1. ⑥](https://proxy-tutorials.dustinwin.cc.cd//posts/pin-shellcrashadguardhome-singboxr/#1-adguard-home-%E5%AE%89%E8%A3%85)》的操作步骤，删除添加的内容：
 
   ```shell
-  sleep 10s
-  /data/AdGuardHome/AdGuardHome -s install
-  /data/AdGuardHome/AdGuardHome -s start
+  sleep 20s
+  cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+  chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
   iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
   iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
   ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
@@ -451,7 +479,7 @@ echo -e '12345678\n12345678' | passwd root
   连接 SSH 后直接粘贴如下所有命令：
 
   ```shell
-  /data/AdGuardHome/AdGuardHome -s stop && /data/AdGuardHome/AdGuardHome -s uninstall && rm -rf /data/AdGuardHome
+  /etc/init.d/AdGuardHome stop && /data/AdGuardHome/AdGuardHome -s uninstall && rm -rf /data/AdGuardHome
   iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
   iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
   ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53

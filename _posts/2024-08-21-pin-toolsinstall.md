@@ -107,8 +107,37 @@ curl -sS -o /data/AdGuardHome/AdGuardHome -L https://ghfast.top/https://github.c
 # AdGuard Home Beta 版
 curl -sS -o /data/AdGuardHome/AdGuardHome -L https://ghfast.top/https://github.com/DustinWin/proxy-tools/releases/download/AdGuardHome/AdGuardHome_beta_linux_arm64
 chmod +x /data/AdGuardHome/AdGuardHome
-/data/AdGuardHome/AdGuardHome -s install
-/data/AdGuardHome/AdGuardHome -s start
+# 新建 AdGuard Home 启动/停止服务文件
+cat <<'EOF' > /data/AdGuardHome/AdGuardHome.sh
+#!/bin/sh /etc/rc.common
+
+START=95
+STOP=01
+USE_PROCD=1
+
+WORK_DIR="/data/AdGuardHome"
+CONFIG_FILE="$WORK_DIR/AdGuardHome.yaml"
+
+start_service() {
+    echo "AdGuard Home 正在启动..."
+    procd_open_instance
+    procd_set_param command "$WORK_DIR/AdGuardHome" -s run
+    procd_append_param command -c "$CONFIG_FILE"
+    procd_append_param command -w "$WORK_DIR"
+    procd_set_param pidfile /var/run/AdGuardHome.pid
+    procd_close_instance
+    echo "AdGuard Home 启动成功！"
+}
+
+stop_service() {
+    echo "AdGuard Home 正在停止..."
+    sleep 3
+    echo "AdGuard Home 停止成功！"
+}
+EOF
+# 复制 AdGuard Home 启动/停止服务文件到 init.d 目录
+cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
 # 将所有发往 53 端口的流量重定向到本地的 5353 端口
 iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
@@ -116,9 +145,9 @@ ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 # 添加开机启动
 cat <<EOF >> /data/auto_ssh/auto_ssh.sh
-sleep 10s
-/data/AdGuardHome/AdGuardHome -s install
-/data/AdGuardHome/AdGuardHome -s start
+sleep 20s
+cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
 iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
@@ -152,5 +181,5 @@ curl -sS -o /data/AdGuardHome/AdGuardHome -L https://ghfast.top/https://github.c
 204#curl -sS -L https://ghfast.top/https://github.com/DustinWin/proxy-tools/releases/download/Dashboard/zashboard.tar.gz | tar -zx -C $CRASHDIR/ui/ >/dev/null 2>&1#更新zashboard
 205#curl -sS -o /data/AdGuardHome/AdGuardHome -L https://ghfast.top/https://github.com/DustinWin/proxy-tools/releases/download/AdGuardHome/AdGuardHome_beta_linux_arm64 >/dev/null 2>&1#更新AdGuardHome
 ```
-1. 按一下 Esc 键（退出键），输入英文冒号 `:`，继续输入 `wq` 并回车
-2. 执行 `sc`，进入 ShellCrash → 5 配置自动任务 → 1 添加自动任务，可以看到末尾就有添加的定时任务，输入对应的数字并回车后可设置执行条件
+2. 按一下 Esc 键（退出键），输入英文冒号 `:`，继续输入 `wq` 并回车
+3. 执行 `sc`，进入 ShellCrash → 5 配置自动任务 → 1 添加自动任务，可以看到末尾就有添加的定时任务，输入对应的数字并回车后可设置执行条件

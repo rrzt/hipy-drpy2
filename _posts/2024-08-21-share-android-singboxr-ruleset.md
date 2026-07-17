@@ -65,7 +65,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "hosts", "detour": "GLOBAL" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_alidns", "dns_dnspod" ] },
       { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "28.0.0.0/8", "inet6_range": "fc00::/16" }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/16" }
     ],
     "rules": [
       { "preferred_by": [ "hosts" ], "server": "hosts" },
@@ -73,15 +73,17 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
       { "clash_mode": [ "Global" ], "server": "dns_proxy" },
       { "rule_set": [ "private" ], "server": "dns_local" },
       { "rule_set": [ "ads" ], "action": "predefined" },
-      { "rule_set": [ "trackerslist", "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
+      { "rule_set": [ "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
       { "rule_set": [ "games", "ai", "proxy" ], "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "rule_set": [ "cn" ], "server": "dns_direct" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "action": "evaluate", "server": "dns_direct" },
+      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" }
     ],
     "final": "dns_direct",
     "strategy": "prefer_ipv4",
     "optimistic": true,
-    "reverse_mapping": true
+    "reverse_mapping": true,
+    "cache_client_subnet": true
   },
   "http_clients": [ { "tag": "detour_proxy", "detour": "GLOBAL" } ],
   "inbounds": [
@@ -90,7 +92,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
   ],
   "outbounds": [
     { "tag": "节点选择", "type": "selector", "outbounds": [ "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
-    { "tag": "网络测试", "type": "selector", "outbounds": [ "全球直连", "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
+    { "tag": "网络测试", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "免费节点", "🆚 vless 节点" ] },
     { "tag": "游戏平台", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "🆚 vless 节点" ] },
     { "tag": "AI 平台", "type": "selector", "outbounds": [ "节点选择", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "🆚 vless 节点" ] },
     { "tag": "游戏服务", "type": "selector", "outbounds": [ "全球直连", "节点选择" ] },
@@ -145,18 +147,10 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
       { "rule_set": [ "proxy" ], "outbound": "国外域名" },
       { "rule_set": [ "cn" ], "outbound": "国内域名" },
       { "ip_is_private": true, "outbound": "私有网络" },
-      { "rule_set": [ "telegramip" ], "outbound": "电报消息" },
-      { "action": "resolve", "match_only": true },
-      { "rule_set": [ "cnip" ], "outbound": "国内 IP" }
+      { "rule_set": [ "cnip" ], "outbound": "国内 IP" },
+      { "rule_set": [ "telegramip" ], "outbound": "电报消息" }
     ],
     "rule_set": [
-      {
-        "tag": "trackerslist",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/trackerslist.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/trackerslist.srs"
-      },
       {
         "tag": "ads",
         "type": "remote",
@@ -242,18 +236,18 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
         "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cn.srs"
       },
       {
-        "tag": "telegramip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/telegramip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/telegramip.srs"
-      },
-      {
         "tag": "cnip",
         "type": "remote",
         "format": "binary",
         "path": "./ruleset/cnip.srs",
         "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cnip.srs"
+      },
+      {
+        "tag": "telegramip",
+        "type": "remote",
+        "format": "binary",
+        "path": "./ruleset/telegramip.srs",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/telegramip.srs"
       }
     ],
     "final": "漏网之鱼",
@@ -314,7 +308,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
       { "tag": "dns_quad9", "type": "quic", "server": "dns11.quad9.net", "domain_resolver": "hosts", "detour": "GLOBAL" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_alidns", "dns_dnspod" ] },
       { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_quad9" ] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "28.0.0.0/8", "inet6_range": "fc00::/16" }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/16" }
     ],
     "rules": [
       { "preferred_by": [ "hosts" ], "server": "hosts" },
@@ -322,17 +316,18 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
       { "clash_mode": [ "Global" ], "server": "dns_proxy" },
       { "rule_set": [ "private" ], "server": "dns_local" },
       { "rule_set": [ "ads" ], "action": "predefined" },
-      { "rule_set": [ "trackerslist", "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
+      { "rule_set": [ "microsoft-cn", "apple-cn", "google-cn", "games-cn" ], "server": "dns_direct" },
       { "rule_set": [ "games", "ai", "proxy" ], "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "rule_set": [ "cn" ], "server": "dns_direct" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      // 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
+      { "action": "evaluate", "server": "dns_proxy", "client_subnet": "211.137.58.0/24" },
+      { "match_response": true, "rule_set": [ "cnip" ], "action": "respond" }
     ],
     "final": "dns_proxy",
     "strategy": "prefer_ipv4",
     "optimistic": true,
     "reverse_mapping": true,
-    // 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
-    "client_subnet": "211.137.58.0/24"
+    "cache_client_subnet": true
   }
 }
 ```

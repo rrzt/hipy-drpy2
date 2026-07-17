@@ -63,7 +63,7 @@ proxies:
 
 proxy-groups:
   - {name: 节点选择, type: select, proxies: [香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/proxy.png"}
-  - {name: 网络测试, type: select, proxies: [全球直连, 节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/networktest.png"}
+  - {name: 网络测试, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 免费节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/networktest.png"}
   - {name: 游戏平台, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/games.png"}
   - {name: AI 平台, type: select, proxies: [节点选择, 香港节点, 台湾节点, 日本节点, 新加坡节点, 美国节点, 🆚 vless 节点], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/ai.png"}
   - {name: 游戏服务, type: select, proxies: [全球直连, 节点选择], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/games-cn.png"}
@@ -91,14 +91,6 @@ rule-providers:
     format: mrs
     path: ./ruleset/fakeip-filter.mrs
     url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter-lite.mrs"
-    interval: 86400
-
-  trackerslist:
-    type: http
-    behavior: domain
-    format: mrs
-    path: ./ruleset/trackerslist.mrs
-    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/trackerslist.mrs"
     interval: 86400
 
   private:
@@ -289,13 +281,12 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,fakeip-filter,real-ip
     - RULE-SET,private,real-ip
-    - RULE-SET,trackerslist,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,google-cn,real-ip
@@ -304,7 +295,7 @@ dns:
     - RULE-SET,ai,fake-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
-    - MATCH,fake-ip
+    - MATCH,real-ip
   nameserver:
     - quic://dns.alidns.com:853
     - https://dns.pub/dns-query
@@ -335,13 +326,12 @@ dns:
   ipv6: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 198.18.0.0/15
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,fakeip-filter,real-ip
     - RULE-SET,private,real-ip
-    - RULE-SET,trackerslist,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
     - RULE-SET,google-cn,real-ip
@@ -350,7 +340,7 @@ dns:
     - RULE-SET,ai,fake-ip
     - RULE-SET,proxy,fake-ip
     - RULE-SET,cn,real-ip
-    - MATCH,fake-ip
+    - MATCH,real-ip
   respect-rules: true
   nameserver:
     # 推荐将 `ecs` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
@@ -365,7 +355,7 @@ dns:
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:private': [system]
-    'rule-set:fakeip-filter,trackerslist,microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
+    'rule-set:fakeip-filter,microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
 ```
 
 ## 四、 添加定时任务
@@ -384,7 +374,7 @@ dns:
 3. 进入 2) DNS 设置 → 9) 修改 DNS 服务器，设置如下：  
 <img src="/assets/img/dns/dns-null.png" alt="ShellCrash 设置 2" width="60%" />
 
-3. 进入 2) 功能设置 → 6) 自定义端口及密钥 → 5) 修改面板访问端口，修改为 `9090`
+4. 进入 2) 功能设置 → 6) 自定义端口及密钥 → 5) 修改面板访问端口，修改为 `9090`
 
 ## 六、 安装 AdGuard Home
 连接 SSH 后执行如下命令：
@@ -393,16 +383,43 @@ dns:
 mkdir -p /data/AdGuardHome
 curl -sS -o /data/AdGuardHome/AdGuardHome -L https://ghfast.top/https://github.com/DustinWin/proxy-tools/releases/download/AdGuardHome/AdGuardHome_beta_linux_arm64
 chmod +x /data/AdGuardHome/AdGuardHome
-/data/AdGuardHome/AdGuardHome -s install
-/data/AdGuardHome/AdGuardHome -s start
+cat <<'EOF' > /data/AdGuardHome/AdGuardHome.sh
+#!/bin/sh /etc/rc.common
+
+START=95
+STOP=01
+USE_PROCD=1
+
+WORK_DIR="/data/AdGuardHome"
+CONFIG_FILE="$WORK_DIR/AdGuardHome.yaml"
+
+start_service() {
+    echo "AdGuard Home 正在启动..."
+    procd_open_instance
+    procd_set_param command "$WORK_DIR/AdGuardHome" -s run
+    procd_append_param command -c "$CONFIG_FILE"
+    procd_append_param command -w "$WORK_DIR"
+    procd_set_param pidfile /var/run/AdGuardHome.pid
+    procd_close_instance
+    echo "AdGuard Home 启动成功！"
+}
+
+stop_service() {
+    echo "AdGuard Home 正在停止..."
+    sleep 3
+    echo "AdGuard Home 停止成功！"
+}
+EOF
+cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
 iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 cat <<EOF >> /data/auto_ssh/auto_ssh.sh
-sleep 10s
-/data/AdGuardHome/AdGuardHome -s install
-/data/AdGuardHome/AdGuardHome -s start
+sleep 20s
+cp -f /data/AdGuardHome/AdGuardHome.sh /etc/init.d/AdGuardHome
+chmod +x /etc/init.d/AdGuardHome && /etc/init.d/AdGuardHome start
 iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353
 iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 5353

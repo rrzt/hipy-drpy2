@@ -52,7 +52,7 @@ curl -sS -o $CRASHDIR/Country.mmdb -L https://cdn.jsdelivr.net/gh/DustinWin/rule
   - ① 进入 2) DNS 设置 → 9) 修改 DNS 服务器，选择“4) 一键配置加密 DNS”（推荐设置 DNS 分流，请看《[搭载 mihomo 内核进行 DNS 分流教程-geodata 方案](https://proxy-tutorials.dustinwin.cc.cd/posts/dnsbypass-mihomo-geodata)》）
   - ② 进入 2) 功能设置 → 5) 启用域名嗅探，选择“1) 是”
 
-4. 进入主菜单 → 4 启动设置，启用“1) 开机自启动”
+4. 进入主菜单 → 4 启动设置，启用“1) 开机自启动”，然后选择“3) 设置自启延时”为“10 秒”
 5. 进入主菜单 → 5) 自动任务 → 1) 添加自动任务，选择 8) 自动更新内核，回车后可设置执行条件
 6. 进入主菜单 → 8) 工具与优化，选择“6) 小米设备软固化 SSH”（无需输入需要还原的 SSH 密码）
 7. 进入 8) 工具与优化 → 8) 小米设备Tun模块修复，选择“1) 我已知晓，出现问题会自行承担！”
@@ -73,5 +73,5 @@ curl -sS -o $CRASHDIR/Country.mmdb -L https://cdn.jsdelivr.net/gh/DustinWin/rule
 1. 若使用基于 [Chromium 项目](https://www.chromium.org/Home/)开发的浏览器无法访问在线 Dashboard 面板时，以 [Chrome 浏览器](https://www.google.com/chrome/)为例，需要设置该网址域名“允许显示不安全内容”，进入设置 → 隐私和安全 → 网站设置 → 更多内容设置 → 不安全内容（或者直接在地址栏打开 `chrome://settings/content/insecureContent` 进行设置），在“允许显示不安全内容”内添加网址域名 `board.zash.run.place`  
 <img src="/assets/img/tools/chrome-setting-dashboard.png" alt="在线 Dashboard 面板 1" width="60%" />
 
-1. 打开 [zashboard](https://github.com/Zephyruso/zashboard) 在线面板地址 <http://board.zash.run.place> 后，直接在“Clash API”标签里将“主机”和“端口”分别修改为 `192.168.31.1` 和 `9999`，点击“提交”即可访问 Dashboard 面板  
+2. 打开 [zashboard](https://github.com/Zephyruso/zashboard) 在线面板地址 <http://board.zash.run.place> 后，直接在“Clash API”标签里将“主机”和“端口”分别修改为 `192.168.31.1` 和 `9999`，点击“提交”即可访问 Dashboard 面板  
 <img src="/assets/img/tools/192-9999-dashboard.png" alt="在线 Dashboard 面板 2" width="60%" />
