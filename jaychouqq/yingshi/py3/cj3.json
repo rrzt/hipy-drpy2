@@ -22,6 +22,13 @@
             "bz": "1",
             "paichu": "1,2,3,4"
         },
+         {
+            "name": "TV-悠悠资源站",
+            "api": "https://uuzy.me/api.php/provide/vod/",
+            "detail": "https://uuzy.me",
+            "bz": "1",
+            "paichu": "1,2,3,4"
+        },
           {
             "name": "TV-大众资源站",
             "api": "https://cdn.dzzyapi.com/api.php/provide/vod/",
