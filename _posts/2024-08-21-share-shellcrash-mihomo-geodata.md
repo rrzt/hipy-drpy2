@@ -192,7 +192,7 @@ dns:
     - MATCH,real-ip
   nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   nameserver-policy:
     'geosite:private': [system]
     'geosite:ads': [rcode://success]

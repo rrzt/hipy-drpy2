@@ -123,8 +123,8 @@ tags: [sing-box, sing-boxr, 直链, 订阅, ruleset, rule_set, 基础]
     "rules": [
       // 若使用 ShellCrash，可进入 7 → 4 启用域名嗅探后删除此条 `action`
       { "action": "sniff" },
-      // 若使用 ShellCrash，可进入 7 → 4 启用域名嗅探后删除此条 `action`
-      { "protocol": [ "dns" ], "action": "hijack-dns" },
+      // 若使用 ShellCrash，会自动覆写此条，可删除此条 `hijack-dns`
+      { "type": "logical", "mode": "or", "rules": [ { "protocol": [ "dns" ] }, { "port": 53 } ], "action": "hijack-dns" },
       // 若使用 ShellCrash，会自动覆写此条，可删除此条 `clash_mode`
       { "clash_mode": [ "Direct" ], "outbound": "DIRECT" },
       // 若使用 ShellCrash，会自动覆写此条，可删除此条 `clash_mode`
@@ -155,125 +155,13 @@ tags: [sing-box, sing-boxr, 直链, 订阅, ruleset, rule_set, 基础]
     ],
     // 规则集（binary 文件每天自动更新）
     "rule_set": [
+      // 若使用 ShellCrash，由于无法判断本机进程（默认删除 `process_name` 规则），需删除 `applications`
       {
-        "tag": "ads",
+        "tag": [ "ads", "private", "applications", "microsoft-cn", "apple-cn", "google-cn", "games-cn", "games", "media", "ai", "networktest", "proxy", "cn", "privateip", "telegramip", "cnip", "mediaip" ],
         "type": "remote",
         "format": "binary",
-        "path": "./ruleset/ads.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ads.srs"
-      },
-      {
-        "tag": "private",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/private.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/private.srs"
-      },
-      // 若使用 ShellCrash，由于无法判断本机进程（默认删除 `process_name` 规则），需删除此条 `applications`
-      {
-        "tag": "applications",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/applications.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/applications.srs"
-      },
-      {
-        "tag": "microsoft-cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/microsoft-cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/microsoft-cn.srs"
-      },
-      {
-        "tag": "apple-cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/apple-cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/apple-cn.srs"
-      },
-      {
-        "tag": "google-cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/google-cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/google-cn.srs"
-      },
-      {
-        "tag": "games-cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/games-cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/games-cn.srs"
-      },
-      {
-        "tag": "games",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/games.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/games.srs"
-      },
-      {
-        "tag": "media",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/media.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/media.srs"
-      },
-      {
-        "tag": "ai",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/ai.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ai.srs"
-      },
-      {
-        "tag": "networktest",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/networktest.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/networktest.srs"
-      },
-      {
-        "tag": "proxy",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/proxy.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/proxy.srs"
-      },
-      {
-        "tag": "cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cn.srs"
-      },
-      {
-        "tag": "privateip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/privateip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/privateip.srs"
-      },
-      {
-        "tag": "telegramip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/telegramip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/telegramip.srs"
-      },
-      {
-        "tag": "cnip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/cnip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cnip.srs"
-      },
-      {
-        "tag": "mediaip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/mediaip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/mediaip.srs"
+        "path": "./ruleset/{tag}.srs",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/{tag}.srs"
       }
     ],
     // 默认出站，即没有命中规则的域名或 IP 走该规则
@@ -379,8 +267,8 @@ tags: [sing-box, sing-boxr, 直链, 订阅, ruleset, rule_set, 基础]
     "rules": [
       // 若使用 ShellCrash，可进入 7 → 4 启用域名嗅探后删除此条 `action`
       { "action": "sniff" },
-      // 若使用 ShellCrash，可进入 7 → 4 启用域名嗅探后删除此条 `action`
-      { "protocol": [ "dns" ], "action": "hijack-dns" },
+      // 若使用 ShellCrash，会自动覆写此条，可删除此条 `hijack-dns`
+      { "type": "logical", "mode": "or", "rules": [ { "protocol": [ "dns" ] }, { "port": 53 } ], "action": "hijack-dns" },
       // 若使用 ShellCrash，会自动覆写此条，可删除此条 `clash_mode`
       { "clash_mode": [ "Direct" ], "outbound": "DIRECT" },
       // 若使用 ShellCrash，会自动覆写此条，可删除此条 `clash_mode`
@@ -402,83 +290,11 @@ tags: [sing-box, sing-boxr, 直链, 订阅, ruleset, rule_set, 基础]
     // 规则集（binary 文件每天自动更新）
     "rule_set": [
       {
-        "tag": "ads",
+        "tag": [ "ads", "private", "games", "media", "ai", "networktest", "tld-proxy", "gfw", "telegramip", "mediaip" ],
         "type": "remote",
         "format": "binary",
-        "path": "./ruleset/ads.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ads.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "private",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/private.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/private.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "games",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/games.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/games.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "media",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/media.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/media.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "ai",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/ai.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ai.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "networktest",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/networktest.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/networktest.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "tld-proxy",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/tld-proxy.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/tld-proxy.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "gfw",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/gfw.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/gfw.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "telegramip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/telegramip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/telegramip.srs",
-        "download_detour": "GLOBAL"
-      },
-      {
-        "tag": "mediaip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/mediaip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/mediaip.srs",
+        "path": "./ruleset/{tag}.srs",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/{tag}.srs",
         "download_detour": "GLOBAL"
       }
     ],
@@ -539,25 +355,11 @@ tags: [sing-box, sing-boxr, 直链, 订阅, ruleset, rule_set, 基础]
     // 规则集（binary 文件每天自动更新）
     "rule_set": [
       {
-        "tag": "bilibili",
+        "tag": [ "bilibili", "netflix", "netflixip" ],
         "type": "remote",
         "format": "binary",
-        "path": "./ruleset/bilibili.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/bilibili.srs"
-      },
-      {
-        "tag": "netflix",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/netflix.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/netflix.srs"
-      },
-      {
-        "tag": "netflixip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/netflixip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/netflixip.srs"
+        "path": "./ruleset/{tag}.srs",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/{tag}.srs"
       }
     ]
   }

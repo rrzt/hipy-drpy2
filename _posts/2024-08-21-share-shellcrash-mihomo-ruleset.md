@@ -291,7 +291,7 @@ dns:
     - MATCH,real-ip
   nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   nameserver-policy:
     'rule-set:private': [system]
     'rule-set:ads': [rcode://success]

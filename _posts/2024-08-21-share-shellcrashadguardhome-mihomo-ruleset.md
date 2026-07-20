@@ -85,11 +85,11 @@ proxy-groups:
   - {name: 免费节点, type: url-test, tolerance: 100, use: [🆓 免费订阅], icon: "https://github.com/DustinWin/ruleset_geodata/releases/download/icons/free.png"}
 
 rule-providers:
-  fakeip-filter:
+  fakeip-filter-lite:
     type: http
     behavior: domain
     format: mrs
-    path: ./ruleset/fakeip-filter.mrs
+    path: ./ruleset/fakeip-filter-lite.mrs
     url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter-lite.mrs"
     interval: 86400
 
@@ -285,7 +285,7 @@ dns:
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,fakeip-filter,real-ip
+    - RULE-SET,fakeip-filter-lite,real-ip
     - RULE-SET,private,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
@@ -298,7 +298,7 @@ dns:
     - MATCH,real-ip
   nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   nameserver-policy:
     'rule-set:private': [system]
 ```
@@ -330,7 +330,7 @@ dns:
   fake-ip-range6: fc00::/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,fakeip-filter,real-ip
+    - RULE-SET,fakeip-filter-lite,real-ip
     - RULE-SET,private,real-ip
     - RULE-SET,microsoft-cn,real-ip
     - RULE-SET,apple-cn,real-ip
@@ -355,7 +355,7 @@ dns:
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:private': [system]
-    'rule-set:fakeip-filter,microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
+    'rule-set:fakeip-filter-lite,microsoft-cn,apple-cn,google-cn,games-cn,cn': [quic://dns.alidns.com:853, https://doh.pub/dns-query]
 ```
 
 ## 四、 添加定时任务

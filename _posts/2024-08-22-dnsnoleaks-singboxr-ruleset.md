@@ -21,32 +21,11 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 进阶, DNS, DNS 泄�
   "route": {
     "rule_set": [
       {
-        "tag": "fakeip-filter",
+        "tag": [ "fakeip-filter", "proxy", "cn", "cnip" ],
         "type": "remote",
         "format": "binary",
-        "path": "./ruleset/fakeip-filter.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/fakeip-filter.srs"
-      },
-      {
-        "tag": "proxy",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/proxy.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/proxy.srs"
-      },
-      {
-        "tag": "cn",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/cn.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cn.srs"
-      },
-      {
-        "tag": "cnip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./ruleset/cnip.srs",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cnip.srs"
+        "path": "./ruleset/{tag}.srs",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/{tag}.srs"
       }
     ]
   }
@@ -99,9 +78,9 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 进阶, DNS, DNS 泄�
       ],
       "final": "dns_proxy",
       "strategy": "prefer_ipv4",
+      "cache_client_subnet": true,
       "optimistic": true,
-      "reverse_mapping": true,
-      "cache_client_subnet": true
+      "reverse_mapping": true
     }
   }
   ```
@@ -145,9 +124,9 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 进阶, DNS, DNS 泄�
       ],
       "final": "dns_proxy",
       "strategy": "prefer_ipv4",
-      "optimistic": true,
-      "reverse_mapping": true,
       "cache_client_subnet": true,
+      "optimistic": true,
+      "reverse_mapping": true
       // 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS 的 IP 段
       "client_subnet": "211.137.58.0/24"
     }
@@ -195,9 +174,9 @@ tags: [sing-box, sing-boxr, ShellCrash, ruleset, rule_set, 进阶, DNS, DNS 泄�
       ],
       "final": "dns_proxy",
       "strategy": "prefer_ipv4",
+      "cache_client_subnet": true,
       "optimistic": true,
-      "reverse_mapping": true,
-      "cache_client_subnet": true
+      "reverse_mapping": true
     }
   }
   ```

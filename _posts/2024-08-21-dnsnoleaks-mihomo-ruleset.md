@@ -80,15 +80,15 @@ dns:
     - 'quic://dns11.quad9.net:853#ecs=211.137.58.0/24&ecs-override=true'
   proxy-server-nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   direct-nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:fakeip-filter,cn':
       - quic://dns.alidns.com:853
-      - https://dns.pub/dns-query
+      - https://doh.pub/dns-query
 ```
 
 按一下 Esc 键（退出键），输入英文冒号 `:`，继续输入 `wq` 并回车
@@ -121,7 +121,7 @@ dns:
     fake-ip-filter: [rule-set:fakeip-filter]
     nameserver:
       - quic://dns.alidns.com:853
-      - https://dns.pub/dns-query
+      - https://doh.pub/dns-query
   ```
 
   按一下 Esc 键（退出键），输入英文冒号 `:`，继续输入 `wq` 并回车
@@ -153,15 +153,15 @@ dns:
     - 'quic://dns11.quad9.net:853#ecs=211.137.58.0/24&ecs-override=true'
   proxy-server-nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   direct-nameserver:
     - quic://dns.alidns.com:853
-    - https://dns.pub/dns-query
+    - https://doh.pub/dns-query
   direct-nameserver-follow-policy: true
   nameserver-policy:
     'rule-set:cn':
       - quic://dns.alidns.com:853
-      - https://dns.pub/dns-query
+      - https://doh.pub/dns-query
 ```
 
 按一下 Esc 键（退出键），输入英文冒号 `:`，继续输入 `wq` 并回车
