@@ -126,7 +126,7 @@ var index_config_default = {
     ],
     format: "xml",
     autoPush: true,
-    autoPushBlacklist: ["aishangtingshu", "i275", "kafeizhibo", "aiting_music", "tingleme", "tingyou", "bili_all", "bili_official", "88kanqiu", "douyu", "fengye_music", "douyinlive", "huaren_live", "live"]
+    autoPushBlacklist: ["bili_all", "bili_official", "88kanqiu", "live"]
   },
   t4: {
     list: []

@@ -54,6 +54,26 @@
             "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
         },
 
+       {
+            "name": "🐬飞扬源",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "https://www.985pan.com/down.php/bf5e9607ff407fcdd71f63928ea5bc79.txt"
+        },
+
+	    {
+            "name": "🐬黄蚂蚁先锋推流源",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "http://ge.html-5.me//ii/黄蚂蚁先锋推流源.txt"
+        },
+
+    {
+      "name": "🔓zhtv",
+      "url": "https://raw.githubusercontent.com/yewengood/kzb/refs/heads/main/zhtv.txt"
+    },
+
+
     {
       "name": "🔓live",
       "url": "https://raw.githubusercontent.com/xiongjian83/TvBox/refs/heads/main/live.txt"
@@ -403,18 +423,35 @@
             "ua": "okhttp",
             "url": "https://t.freetv.fun/m3u/playlist.txt"
         },
+
         {
             "name": "🐬4GTV(梯子台湾节点)",
             "type": 0,
             "ua": "okhttp",
             "url": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/GHK/refs/heads/main/4gtv"
         },
+
 	    {
             "name": "🐬4GTV2",
             "type": 0,
             "ua": "okhttp",
             "url": "https://ha.msbot.dpdns.org/4gtv_api.php"
         },
+
+	    {
+            "name": "🐬4GTV(梯子任何节点)1080p",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "https://ha.msbot.dpdns.org/4gtv_api.php"
+        },
+
+		{
+            "name": "🐬4GTV(免梯子)1080p",
+            "type": 0,
+            "ua": "okhttp",
+            "url": "http://4gtv.cnlive.club/4gtv.m3u"
+        },
+
         {
             "name": "🐬安博(梯子)卡顿 有🔞",
             "type": 0,
