@@ -34,7 +34,12 @@ var index_config_default = {
     token: ""
   },
   y115: {
-    cookie: ""
+    cookie: "",
+    offline: {
+      savePath: "0",
+      pollAttempts: 6,
+      pollIntervalMs: 1500
+    }
   },
   baidu: {
     cookie: ""
@@ -48,98 +53,58 @@ var index_config_default = {
     password: ""
   },
   muou: {
-    urls: [
-      "https://123.666291.xyz",
-      "https://666.666291.xyz",
-      "https://www.muou.asia",
-      "https://www.muou.site"
-    ]
+    urls: ["https://123.666291.xyz", "https://666.666291.xyz", "https://www.muou.asia", "https://www.muou.site"]
   },
   wogg: {
-    urls: [
-      "https://wogg.333232.xyz",
-      "https://wogg.xxooo.cf",
-      "https://woggpan.888484.xyz",
-      "https://www.wogg.lol",
-      "https://www.wogg.one"
-    ]
+    urls: ["https://wogg.333232.xyz", "https://wogg.xxooo.cf", "https://woggpan.888484.xyz", "https://www.wogg.lol", "https://www.wogg.one"]
   },
   leijing: {
-    urls: [
-      "https://www.leijing1.com",
-      "https://leijing1.com",
-      "https://www.leijing.xyz"
-    ]
+    urls: ["https://www.leijing1.com", "https://leijing1.com", "https://www.leijing.xyz"]
   },
   duoduo: {
-    urls: [
-      "https://tv.214521.xyz",
-      "https://tv.yydsys.cc",
-      "https://tv.yydsys.top"
-    ]
+    urls: ["https://tv.214521.xyz", "https://tv.yydsys.cc", "https://tv.yydsys.top"]
   },
   zhizhen: {
-    urls: [
-      "http://www.miqk.cc",
-      "https://mihdr.top",
-      "https://www.mihdr.top",
-      "https://www.miqk.cc",
-      "https://www.zhizhenpan.fun",
-      "https://xiaomi666.fun",
-      "https://xiaomiai.site"
-    ]
+    urls: ["http://www.miqk.cc", "https://mihdr.top", "https://www.mihdr.top", "https://www.miqk.cc", "https://www.zhizhenpan.fun", "https://xiaomi666.fun", "https://xiaomiai.site"]
   },
   ouge: {
-    urls: [
-      "https://woog.430520.xyz",
-      "https://woog.nxog.eu.org",
-      "https://woog.nxog.fun"
-    ]
+    urls: ["https://woog.430520.xyz", "https://woog.nxog.eu.org", "https://woog.nxog.fun"]
   },
   labi: {
-    urls: [
-      "http://feimo.fun",
-      "http://fmao.shop",
-      "http://fmao.site",
-      "http://xiaocge.fun",
-      "http://xiaocgege.shop",
-      "https://feimao666.fun"
-    ]
+    urls: ["http://feimo.fun", "http://fmao.shop", "http://fmao.site", "http://xiaocge.fun", "http://xiaocgege.shop", "https://feimao666.fun"]
   },
   kuaiying: {
-    urls: [
-      "http://xsayang.fun:12512",
-      "http://154.201.83.50:12512"
-    ]
+    urls: ["http://38.76.197.172:12521", "http://xsayang.fun:12512"]
   },
   huban: {
-    urls: [
-      "http://103.45.162.207:20720",
-      "http://154.222.27.33:20720",
-      "http://xhban.xyz:20720"
-    ]
+    urls: ["http://38.76.197.172:16969", "http://xhban.xyz:20720"]
   },
   erxiao: {
-    urls: [
-      "https://www.2xiaopan.top/",
-      "https://2xiaopan.top/",
-      "https://www.erxiaozhan.top/",
-      "https://www.2xiaozhan.top/",
-      "https://wexwp.cc/"
-    ]
+    urls: ["https://www.2xiaopan.top/", "https://2xiaopan.top/", "https://www.erxiaozhan.top/", "https://www.2xiaozhan.top/", "https://wexwp.cc/"]
   },
   shandian: {
-    urls: [
-      "https://sd.sduc.site"
-    ]
+    urls: ["http://shandian.blog", "https://sd.sduc.site"]
+  },
+  wouniu: {
+    urls: ["https://zmi.kdns.fr"]
   },
   tgsou: {
-    tgPic: false,
+    tgPic: true,
     count: 0,
-    url: "",
-    channelUsername: ""
+    url: "https://tgsou.lmentor.dpdns.org",
+    channelUsername: "tgsearchers7,Aliyun_4K_Movies,bdbdndn11,yunpanx,bsbdbfjfjff,yp123pan,yunpanxunlei,tianyifc,BaiduCloudDisk,txtyzy,peccxinpd,gotopan,PanjClub,baicaoZY,MCPH01,MCPH02,MCPH03,bdwpzhpd,ysxb48,jdjdn1111,yggpan,MCPH086,zaihuayun,Q66Share,ucwpzy,shareAliyun,alyp_1,dianyingshare,Quark_Movies,ydypzyfx,ucquark,xx123pan,yingshifenxiang123,zyfb123,tyypzhpd,tianyirigeng,cloudtianyi,hdhhd21,Lsp115,oneonefivewpfx,qixingzhenren,taoxgzy,Channel_Shares_115,tyysypzypd,vip115hot,wp123zy,yunpan139,yunpan189,yunpanuc,yydf_hzl,leoziyuan,Q_dongman,yoyokuakeduanju,TG654TG,WFYSFX02,QukanMovie,yeqingjie_GJG666,movielover8888_film3,Baidu_netdisk,D_wusun,FLMdongtianfudi,KaiPanshare,QQZYDAPP,rjyxfx,PikPak_Share_Channel,btzhi,newproductsourcing,cctv1211,duan_ju,QuarkFree,yunpanNB,kkdj001,xxzlzn,pxyunpanxunlei,jxwpzy,kuakedongman,liangxingzhinan,xiangnikanj,guoman4K,zdqxm,kduanju,cilidianying,CBduanju,SharePanFilms,dzsgx,BooksRealm,Oscar_4Kmovies,douerpan,baidu_yppan,Q_jilupian,Netdisk_Movies,yunpanquark,ammmziyuan,ciliziyuanku,cili8888,jzmm_123pan,Q_dianying,domgmingapk,dianying4k,q_dianshiju,tgbokee,ucshare,godupan,gokuapan,gimy115,WFYSFX03,peccxin,Movie888035,xlwpzy,zyywpzy,wydwpzy,gimy100,ucshare,gimy115iso,aliyunys,clouddriveresources,XunLeiPinDao,ydwpzy,a123fxme,WPpindao,kuyupan,djya5,yingshiziyuanpindao,zh_vip,pan_guangya,zyzhpd123,zhenyingsg,gdsharing,weichengduanju666,yingxiangkj,duanjucabian,kuakenetpan,kelea555,tianyiyunpanpindao,PikPakShareChannel,tgyy678,xuexixiaonengshou1,google_yppan,ayzgzf"
   },
-  tgchannel: {},
+  tgchannel: {
+    url: "https://t.me",
+    count: 4,
+    enableImage: true,
+    homeChannelUsername: ["tgsearchers7", "douerpan"],
+    channelUsername: ["Q66Share", "alyp_TV", "ucpanpan", "ucquark", "tianyirigeng", "hao115", "guaguale115", "ydypzyfx", "tgsearchers6", "NewQuark", "dianyingshare", "XiangxiuNB", "yunpanpan", "kuakeyun", "Quark_Movies", "qixingzhenren", "longzbija", "alyp_4K_Movies", "yunpanshare", "shareAliyun", "alyp_1", "xx123pan"],
+    channelRemark: {
+      tgsearchers7: "资源宇宙",
+      douerpan: "豆儿盘"
+    }
+  },
   sites: {
     list: []
   },
@@ -159,8 +124,9 @@ var index_config_default = {
       { address: "http://47.107.188.112:6008/87654321", name: "公益1" },
       { address: "http://ecs.dysobo.cn:9321/87654321", name: "公益2" }
     ],
+    format: "xml",
     autoPush: true,
-    autoPushBlacklist: ["aishangtingshu", "aiting_music", "tingleme", "tingyou", "bili_all", "88kanqiu", "douyu", "fengye_music", "douyinlive", "HuyaLive", "live"]
+    autoPushBlacklist: ["bili_all", "bili_official", "88kanqiu", "live"]
   },
   t4: {
     list: []
@@ -169,7 +135,7 @@ var index_config_default = {
     list: []
   },
   pansou: {
-    api_urls: "https://so.252035.xyz",
+    api_urls: "https://so.hk.111651.xyz",
     channels: "",
     plugins: "",
     cloud_types: "",
@@ -221,6 +187,11 @@ var index_config_default = {
       enabled: true
     }
   ],
+  alist_tvbox: {
+    base_url: "http://127.0.0.1:4567",
+    token: "",
+    custom_classes: ""
+  },
   webdav: [
     {
       name: "亿苯正经",
