@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 黄豆短剧爬虫
-站点: https://www.hdmgdj.com
+站点: https://xqjzvcvt.top
 """
 
 import json
@@ -19,14 +19,14 @@ except ImportError:
 class Spider(BaseSpider):
     """黄豆短剧爬虫"""
 
-    BASE_URL = 'https://www.hdmgdj.com'
-    API_BASE = 'https://hdmgdj.com/api'
+    BASE_URL = 'https://xqjzvcvt.top'
+    API_BASE = 'https://xqjzvcvt.top/api'
 
     HEADERS = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'application/json, text/plain, */*',
-        'Referer': 'https://www.hdmgdj.com/',
-        'Origin': 'https://www.hdmgdj.com',
+        'Referer': 'https://xqjzvcvt.top/',
+        'Origin': 'https://xqjzvcvt.top',
     }
 
     _filter_cache = {}  # 分类筛选缓存

@@ -176,7 +176,7 @@ class Spider(BaseSpider):
                     "vod_area": '',
                     "vod_remarks": f"{data.get('serial', '')}·{data.get('plays', '')}播放",
                     "vod_actor": '',
-                    "vod_director": '未知',
+                    "vod_director": '嗷呜 / 唐三',
                     "vod_content": data.get('summary', '') or data.get('t', ''),
                     "vod_play_from": '黄豆短剧',
                     "vod_play_url": '#'.join(play_url_parts),
@@ -215,24 +215,8 @@ class Spider(BaseSpider):
 
         return result
 
-    def _proxy(self):
-        """返回可被播放器访问的代理地址。
-        getProxyUrl() 默认是 127.0.0.1，但安卓播放器是独立进程，连不到
-        壳 App 的 localhost；换成设备局域网 IP 后，无论 spider 在本机还是
-        PC，播放器都能跨进程/跨设备取到解密后的 m3u8 与 key。"""
-        import socket
-        base = self.getProxyUrl()
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.connect(('8.8.8.8', 80))
-            ip = s.getsockname()[0]
-            s.close()
-        except Exception:
-            ip = '127.0.0.1'
-        return base.replace('127.0.0.1', ip)
-
     def playerContent(self, flag, id, vipFlags):
-        """播放页 - 用代理伺服解密后的 m3u8（key 由客户端现算并注入）"""
+        """播放页 - 直接返回 m3u8 data URI"""
         result = {
             "parse": 0,
             "playUrl": "",
@@ -240,27 +224,42 @@ class Spider(BaseSpider):
             "jx": 0,
             "header": "",
         }
+
         if id:
-            result["url"] = f"{self._proxy()}&type=m3u8&url={urllib.parse.quote(id)}"
+            # 直接在 playerContent 里生成解密后的 m3u8，用 data URI 返回
+            # 这样播放地址就不是 127.0.0.1 代理了
+            m3u8_content = self._build_m3u8_with_key(id)
+            if m3u8_content:
+                import base64
+                m3u8_b64 = base64.b64encode(m3u8_content.encode('utf-8')).decode('ascii')
+                result["url"] = "data:application/vnd.apple.mpegurl;base64," + m3u8_b64
+                result["parse"] = 0
+
         return result
 
     def _build_m3u8_with_key(self, url):
-        """构建 m3u8 内容（用本地计算的 key 替换原 key URI，ts 改成绝对地址）"""
+        """构建 m3u8 内容（key 内嵌为 base64 data URI，ts 用原始绝对地址）"""
+        import hashlib
         import re
+        import base64
         if not url:
             return None
+
         try:
             r = self.session.get(url, timeout=15, verify=False)
             content = r.text
-            # 计算并注入自定义 key
+
+            # 计算 key
             key_bytes = self._get_key_bytes(url)
             if key_bytes:
-                key_uri = f"{self._proxy()}&type=key&url={urllib.parse.quote(url)}"
+                key_b64 = base64.b64encode(key_bytes).decode('ascii')
+                key_data_uri = "data:text/plain;base64," + key_b64
                 content = re.sub(
                     r'(#EXT-X-KEY:.*?URI=")[^"]*(")',
-                    r'\1' + key_uri + r'\2',
+                    r'\1' + key_data_uri + r'\2',
                     content
                 )
+
             # 把相对路径的 ts 改成绝对路径
             base_url = url.rsplit('/', 1)[0] + '/'
             lines = content.split('\n')
@@ -274,13 +273,14 @@ class Spider(BaseSpider):
                         new_lines.append(base_url + line)
                 else:
                     new_lines.append(line)
-            return '\n'.join(new_lines)
+            content = '\n'.join(new_lines)
+            return content
         except Exception as e:
             print(f"_build_m3u8_with_key error: {e}")
             return None
 
     def _get_key_bytes(self, url):
-        """从 m3u8 URL 计算解密 key（与站点一致：md5('xnaichanping'+video_id+version)）"""
+        """从 m3u8 URL 计算解密 key"""
         import hashlib
         import re
         m = re.search(r'/hls/([0-9a-f]{64})/', url)
@@ -289,27 +289,13 @@ class Spider(BaseSpider):
         video_id = m.group(1)
         ver_match = re.search(r'[?&]version=([^&#]+)', url)
         version = ver_match.group(1) if ver_match else 'v1'
-        key_str = "xnaichanping" + video_id + version
+        prefix = "xnaichanping"
+        key_str = prefix + video_id + version
         return hashlib.md5(key_str.encode()).digest()
 
     def localProxy(self, param):
-        """本地代理 - 解密海报图片 / 伺服 m3u8 与自定义 key"""
+        """本地代理 - 解密海报图片"""
         try:
-            ptype = param.get('type', 'img')
-            if ptype == 'm3u8':
-                m3u8_url = param.get('url', '')
-                content = self._build_m3u8_with_key(m3u8_url)
-                if content:
-                    return [200, 'application/vnd.apple.mpegurl', content.encode('utf-8')]
-                return [404, 'text/plain', b'not found']
-            if ptype == 'key':
-                key_url = param.get('url', '')
-                key_bytes = self._get_key_bytes(key_url)
-                if key_bytes:
-                    return [200, 'text/plain', key_bytes]
-                return [404, 'text/plain', b'not found']
-
-            # 默认：解密海报图片（封面为服务端加密，必须解密后返回）
             url = param['url']
             r = self.session.get(url, timeout=15, verify=False)
             decrypted = self._aes_decrypt_img(r.content, url)
