@@ -17,6 +17,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
 
 ```json
 {
+  "$schema": "https://raw.githubusercontent.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
   "providers": [
     {
       "tag": "🛫 机场订阅",
@@ -82,8 +83,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
     "final": "dns_direct",
     "strategy": "prefer_ipv4",
     "optimistic": true,
-    "reverse_mapping": true,
-    "cache_client_subnet": true
+    "reverse_mapping": true
   },
   "http_clients": [ { "tag": "detour_proxy", "detour": "GLOBAL" } ],
   "inbounds": [
@@ -193,7 +193,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
 {: .prompt-tip }
 
 注：
-- ① 本 `dns` 配置中，国内域名走国内 DNS 解析，国外域名走 `fakeip`，未知域名也走 `fakeip`，在匹配 `rule_set:cnip` 规则时会先由国外 DNS 解析且配置 `client_subnet` 提高了兼容性，解析出 IP 在国内则走 `国内 IP` 规则，否则走 `漏网之鱼` 规则（有效解决了“心理 DNS 泄露问题”，详见《[搭载 sing-boxr 内核配置 DNS 不泄露教程-ruleset 方案](https://proxy-tutorials.dustinwin.cc.cd/posts/dnsnoleaks-singboxr-ruleset/)》）
+- ① 本 `dns` 配置中，国内域名走国内 DNS 解析，国外域名走 `fakeip`，未知域名在匹配 `rule_set:cnip` 规则时会先由国外 DNS 解析且配置 `client_subnet`，解析出 IP 在国内则直接返回解析结果且走 `国内 IP` 规则，否则走 `漏网之鱼` 规则（有效解决了“心理 DNS 泄露问题”，详见《[搭载 sing-boxr 内核配置 DNS 不泄露教程-ruleset 方案](https://proxy-tutorials.dustinwin.cc.cd/posts/dnsnoleaks-singboxr-ruleset/)》）
 - ② 推荐将 `client_subnet` 设置为当前宽带运营商分配的默认 DNS（可进入光猫或路由器拨号页面查看，或者前往[公共 DNS 大全](https://toolb.cn/publicdns)查询）的 IP 段，如默认 DNS 为 `211.137.58.20`，可设置为 `211.137.58.0/24`
 
 ```json
@@ -235,8 +235,7 @@ tags: [sing-box, sing-boxr, Android, ruleset, rule_set, 分享]
     "final": "dns_proxy",
     "strategy": "prefer_ipv4",
     "optimistic": true,
-    "reverse_mapping": true,
-    "cache_client_subnet": true
+    "reverse_mapping": true
   }
 }
 ```

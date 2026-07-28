@@ -218,10 +218,11 @@
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/布布追剧.py"
 		},
 		{
-			"key": "fY",
-			"name": "🐬枫叶影院.py(关梯子使用)",
+			"key": "布布追剧",
+			"name": "🐬布布追剧.js",
 			"type": 3,
-			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/枫叶影院.py"
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/jar_js/布布追剧.js",
+			"changeable": 0
 		},
 		{
 			"key": "hxq",
@@ -741,6 +742,25 @@
 			"type": 3,
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/蜜桃视频.py"
 		},
+		{
+			"key": "麻豆",
+			"name": "🐬麻豆.js｜🔞",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/jar_js/麻豆.js",
+			"changeable": 0
+		},
+		{
+          "key": "亚色影库",
+          "name": "🐬亚色影库.py🔞",
+          "type": 3,
+          "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/亚色影库.py"
+        },
+		{
+          "key": "hanime1",
+          "name": "🐬hanime1动漫.py🔞",
+          "type": 3,
+          "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/hanime1.py"
+        },
 		{
 			"key": "MoTV",
 			"name": "🐬MoTV.py｜🔞",

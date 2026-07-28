@@ -270,6 +270,12 @@
           "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/追光影视.py"
         },
 		{
+			"key": "bbzj",
+			"name": "🐬布布追剧.py[追剧]",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/布布追剧.py"
+		},
+		{
           "key": "xhvm",
           "name": "🐬骚火影视.py[追剧]",
           "type": 3,
@@ -546,6 +552,18 @@
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/黑料网.py"
 		},
 		{
+          "key": "hanime1",
+          "name": "🐬hanime1动漫.py🔞[成人动漫]",
+          "type": 3,
+          "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/hanime1.py"
+        },
+		{
+          "key": "亚色影库",
+          "name": "🐬亚色影库.py🔞[成人]",
+          "type": 3,
+          "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/亚色影库.py"
+        },
+		{
 			"key": "MoTV",
 			"name": "🐬MoTV.py｜🔞[成人]",
 			"type": 3,
@@ -766,7 +784,7 @@
 			"name": "🐬采集聚合成人.py｜🔞[采集成人]",
 			"type": 3,
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/采集聚合成人.py"
-		},
+		}
     ],
     "lives": [
 	     {
