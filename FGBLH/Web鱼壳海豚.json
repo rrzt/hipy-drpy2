@@ -815,6 +815,36 @@
 			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/黑料网.py"
 		},
 		{
+          "key": "catemby",
+          "name": "🐬catemby.py🔞[成人][磁力]",
+          "type": 3,
+          "api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/catemby.py"
+        },
+		{
+			"key": "大屌视频",
+			"name": "🐬大屌视频.py｜🔞[成人]",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/大屌视频.py"
+		},
+		{
+			"key": "高端视频",
+			"name": "🐬高端视频.py｜🔞[成人]",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/高端视频.py"
+		},
+		{
+			"key": "猫咪AV",
+			"name": "🐬猫咪AV.py｜🔞[成人]",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/猫咪AV.py"
+		},
+		{
+			"key": "妈妈自拍",
+			"name": "🐬妈妈自拍.py｜🔞[成人]",
+			"type": 3,
+			"api": "https://ghfast.top/https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/py/妈妈自拍.py"
+		},
+		{
           "key": "教授",
           "name": "🐬教授.py🔞[成人]",
           "type": 3,
@@ -1091,6 +1121,13 @@
             "type":3,
             "api":"csp_wbbb",
             "homePage":"https://fgblh.github.io/uhuj.github.io/missav.html"
+        },
+		{
+            "key":"javdb.",
+            "name":"🐬javdb｜🔞[成人][磁力][html]",
+            "type":3,
+            "api":"csp_wbbb",
+            "homePage":"https://fgblh.github.io/uhuj.github.io/javdb.html"
         },
 		{
 			"key": "采集聚合成人",
@@ -1934,20 +1971,20 @@
         },
         {
             "key": "荐片",
-            "name": "荐片｜磁力",
+            "name": "荐片[磁力]",
             "api": "csp_JianPian",
             "type": 3
         },
         {
             "key": "修罗",
-            "name": "修罗｜磁力",
+            "name": "修罗[磁力]",
             "api": "csp_Xlys",
             "type": 3,
             "ext": "https://xl02.com.de"
         },
         {
             "key": "七味",
-            "name": "七味｜磁力",
+            "name": "七味[磁力]",
             "type": 3,
             "api": "csp_QnMp4",
             "searchable": 1,
@@ -1959,7 +1996,7 @@
         },
         {
             "key": "80S",
-            "name": "80S｜磁力",
+            "name": "80S[磁力]",
             "type": 3,
             "api": "csp_BLSGod",
             "playerType": 1,
@@ -1969,7 +2006,7 @@
         },
         {
             "key": "New6v",
-            "name": "New6V｜磁力",
+            "name": "New6V[磁力]",
             "type": 3,
             "api": "csp_New6v",
             "searchable": 1,
@@ -1979,7 +2016,7 @@
         },
         {
             "key": "美剧迷",
-            "name": "美剧迷｜磁力",
+            "name": "美剧迷[磁力]",
             "type": 3,
             "api": "csp_MeijuMi",
             "searchable": 1,
@@ -1988,7 +2025,7 @@
         },
         {
             "key": "迅雷吧",
-            "name": "迅雷吧｜磁力",
+            "name": "迅雷吧[磁力]",
             "type": 3,
             "api": "csp_Xunlei8",
             "searchable": 1,
@@ -1998,7 +2035,7 @@
         },
         {
             "key": "电影港",
-            "name": "电影港｜磁力",
+            "name": "电影港[磁力]",
             "type": 3,
             "api": "csp_XYQHiker",
             "searchable": 1,
@@ -2008,7 +2045,7 @@
         },
         {
             "key": "电影天堂",
-            "name": "电影天堂｜磁力",
+            "name": "电影天堂[磁力]",
             "type": 3,
             "api": "csp_DyGod",
             "searchable": 1,
@@ -2069,7 +2106,7 @@
         },
         {
             "key": "盘搜",
-            "name": "盘搜｜搜索",
+            "name": "盘搜[搜索]",
             "type": 3,
             "api": "csp_PanSou",
             "searchable": 1,
@@ -2079,7 +2116,7 @@
         },
         {
             "key": "古哥",
-            "name": "古哥｜搜索",
+            "name": "古哥[搜索]",
             "type": 3,
             "api": "csp_GugeSo",
             "searchable": 1,
@@ -2089,7 +2126,7 @@
         },
         {
             "key": "兄弟",
-            "name": "兄弟｜搜索",
+            "name": "兄弟[搜索]",
             "type": 3,
             "api": "csp_XiongdiPan",
             "searchable": 1,
@@ -2099,7 +2136,7 @@
         },
         {
             "key": "百酷",
-            "name": "百酷｜搜索",
+            "name": "百酷[搜索]",
             "type": 3,
             "api": "csp_Baiku",
             "searchable": 1,
@@ -2109,7 +2146,7 @@
         },
         {
             "key": "米搜",
-            "name": "米搜｜搜索",
+            "name": "米搜[搜索]",
             "type": 3,
             "api": "csp_MiSou",
             "searchable": 1,
@@ -2119,7 +2156,7 @@
         },
         {
             "key": "鬼鬼",
-            "name": "鬼鬼｜搜索",
+            "name": "鬼鬼[搜索]",
             "type": 3,
             "api": "csp_GuiGui",
             "searchable": 1,
@@ -2129,7 +2166,7 @@
         },
         {
             "key": "混合",
-            "name": "混合｜搜索",
+            "name": "混合[搜索]",
             "type": 3,
             "api": "csp_HunHePan",
             "searchable": 1,
@@ -2139,7 +2176,7 @@
         },
         {
             "key": "天翼",
-            "name": "天翼｜搜索",
+            "name": "天翼[搜索]",
             "type": 3,
             "api": "csp_TianYiSou",
             "searchable": 1,
@@ -2149,7 +2186,7 @@
         },
         {
             "key": "趣盘",
-            "name": "趣盘｜搜索",
+            "name": "趣盘[搜索]",
             "type": 3,
             "api": "csp_QuPanSo",
             "searchable": 1,
@@ -2467,12 +2504,6 @@
             "type": 0,
             "ua": "okhttp",
             "url": "http://xtvantsc.xyz/4gtv.txt"
-        },
-	    {
-            "name": "🐬4GTV(梯子任何节点)1080p",
-            "type": 0,
-            "ua": "okhttp",
-            "url": "https://ha.msbot.dpdns.org/4gtv_api.php"
         },
 		{
             "name": "🐬4GTV(免梯子)1080p",
